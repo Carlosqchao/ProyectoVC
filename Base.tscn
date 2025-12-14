@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://cepd568ojr566"]
+
+[ext_resource type="Texture2D" uid="uid://bpb0gfs4y3apm" path="res://fondo.jpg" id="1_i812h"]
+[ext_resource type="Script" uid="uid://cjxkiac1hhrqh" path="res://hand_receiver.gd" id="1_nfj5t"]
+[ext_resource type="Script" uid="uid://cp23bkhkwpwcf" path="res://HandCursor.gd" id="2_b56jl"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_i812h")
+
+[node name="Node" type="Node" parent="."]
+script = ExtResource("1_nfj5t")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+color = Color(0.0142752165, 0.014275218, 0.014275218, 1)
+script = ExtResource("2_b56jl")
+hand_receiver_path = NodePath("../Node")
