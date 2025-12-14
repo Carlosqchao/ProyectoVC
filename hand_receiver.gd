@@ -16,11 +16,7 @@ func _process(_delta: float) -> void:
 	while udp.get_available_packet_count() > 0:
 		var bytes: PackedByteArray = udp.get_packet()
 		var text := bytes.get_string_from_utf8()
-<<<<<<< HEAD
-		#print("Paquete recibido:", text)  # puedes dejarlo comentado
-=======
 		# print("Paquete recibido:", text)  # puedes dejarlo comentado
->>>>>>> cf12267087179fec7856bafc0df47ba69618d1c8
 		var result = JSON.parse_string(text)
 		if typeof(result) == TYPE_DICTIONARY:
 			last_data = result
