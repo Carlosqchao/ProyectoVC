@@ -1,10 +1,17 @@
+<<<<<<< HEAD
 [gd_scene load_steps=6 format=3 uid="uid://cepd568ojr566"]
+=======
+[gd_scene load_steps=4 format=3 uid="uid://cepd568ojr566"]
+>>>>>>> cf12267087179fec7856bafc0df47ba69618d1c8
 
 [ext_resource type="Texture2D" uid="uid://bpb0gfs4y3apm" path="res://fondo.jpg" id="1_i812h"]
 [ext_resource type="Script" uid="uid://cjxkiac1hhrqh" path="res://hand_receiver.gd" id="1_nfj5t"]
 [ext_resource type="Script" uid="uid://cp23bkhkwpwcf" path="res://HandCursor.gd" id="2_b56jl"]
+<<<<<<< HEAD
 [ext_resource type="Texture2D" uid="uid://b3h8vh7rn7aef" path="res://Balde2.png" id="4_22hco"]
 [ext_resource type="Texture2D" uid="uid://ddu5etg0xo854" path="res://L.png" id="5_nopgj"]
+=======
+>>>>>>> cf12267087179fec7856bafc0df47ba69618d1c8
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -31,6 +38,7 @@ layout_mode = 1
 color = Color(0.0142752165, 0.014275218, 0.014275218, 1)
 script = ExtResource("2_b56jl")
 hand_receiver_path = NodePath("../Node")
+<<<<<<< HEAD
 
 [node name="Balde" type="Sprite2D" parent="ColorRect"]
 texture = ExtResource("4_22hco")
@@ -50,3 +58,5 @@ texture = ExtResource("4_22hco")
 
 [node name="L" type="Sprite2D" parent="ColorRect2"]
 texture = ExtResource("5_nopgj")
+=======
+>>>>>>> cf12267087179fec7856bafc0df47ba69618d1c8

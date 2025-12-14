@@ -2,8 +2,11 @@ import cv2
 import mediapipe as mp
 import socket
 import json
+<<<<<<< HEAD
 import numpy as np
 import math
+=======
+>>>>>>> cf12267087179fec7856bafc0df47ba69618d1c8
 
 # ------------ CONFIG ------------
 GODOT_IP = "127.0.0.1"
@@ -23,6 +26,7 @@ if not cap.isOpened():
 
 frame_count = 0
 
+<<<<<<< HEAD
 FINGER_TIPS = [4, 8, 12, 16, 20]
 FINGER_PIPS = [3, 6, 10, 14, 18]
 
@@ -135,6 +139,8 @@ def draw_rotated_box_for_finger(frame, lm, finger_indices, color=(255, 0, 0), th
 
     return pts
 
+=======
+>>>>>>> cf12267087179fec7856bafc0df47ba69618d1c8
 with mp_hands.Hands(
     max_num_hands=2,
     model_complexity=1,
@@ -161,6 +167,7 @@ with mp_hands.Hands(
                 results.multi_hand_landmarks,
                 results.multi_handedness
             ):
+<<<<<<< HEAD
                 hand_label = handedness.classification[0].label
                 lm = hand_landmarks.landmark
 
@@ -202,11 +209,27 @@ with mp_hands.Hands(
                 y_min = int(np.min(all_pts[:, 1]))
                 y_max = int(np.max(all_pts[:, 1]))
 
+=======
+                hand_label = handedness.classification[0].label  # "Left"/"Right"
+
+                # Landmarks del dedo índice: 5 (base) a 8 (punta)
+                index_points = [5, 6, 7, 8]
+                xs = []
+                ys = []
+                for idx in index_points:
+                    lm = hand_landmarks.landmark[idx]
+                    xs.append(int(lm.x * w))
+                    ys.append(int(lm.y * h))
+
+                x_min, x_max = min(xs), max(xs)
+                y_min, y_max = min(ys), max(ys)
+>>>>>>> cf12267087179fec7856bafc0df47ba69618d1c8
                 center_x = int((x_min + x_max) / 2)
                 center_y = int((y_min + y_max) / 2)
                 length_x = x_max - x_min
                 length_y = y_max - y_min
 
+<<<<<<< HEAD
                 base = lm[5]
                 tip_index = lm[8]
                 vx = tip_index.x - base.x
@@ -215,10 +238,14 @@ with mp_hands.Hands(
                 angle_deg = math.degrees(angle_rad)
 
                 hand_dict = {
+=======
+                hands_data.append({
+>>>>>>> cf12267087179fec7856bafc0df47ba69618d1c8
                     "x": center_x,
                     "y": center_y,
                     "len_x": length_x,
                     "len_y": length_y,
+<<<<<<< HEAD
                     "label": hand_label,
                     "shape": shape,
                     "angle": angle_deg,
@@ -233,6 +260,21 @@ with mp_hands.Hands(
                     cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 255, 255), 2
                 )
 
+=======
+                    "label": hand_label   # "Left" / "Right"
+                })
+
+                # Dibujo opcional de todo el dedo índice para debug
+                for idx in index_points:
+                    lm = hand_landmarks.landmark[idx]
+                    px = int(lm.x * w)
+                    py = int(lm.y * h)
+                    cv2.circle(frame, (px, py), 4, (0, 255, 0), -1)
+
+                cv2.rectangle(frame, (x_min, y_min), (x_max, y_max), (255, 0, 0), 2)
+
+        # Enviar a Godot
+>>>>>>> cf12267087179fec7856bafc0df47ba69618d1c8
         if hands_data and frame_count % SEND_EVERY_N_FRAMES == 0:
             data = {
                 "hands": hands_data,
@@ -244,7 +286,11 @@ with mp_hands.Hands(
 
         frame_count += 1
 
+<<<<<<< HEAD
         cv2.imshow("MediaPipe Gestos - Envío a Godot", frame)
+=======
+        cv2.imshow("MediaPipe Index Finger - Envío a Godot", frame)
+>>>>>>> cf12267087179fec7856bafc0df47ba69618d1c8
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
 
