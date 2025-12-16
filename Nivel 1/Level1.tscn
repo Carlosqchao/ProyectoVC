@@ -1,0 +1,46 @@
+[gd_scene load_steps=6 format=3 uid="uid://clh5krtb7bdj"]
+
+[ext_resource type="Texture2D" uid="uid://bpb0gfs4y3apm" path="res://fondo.jpg" id="1_afs6g"]
+[ext_resource type="PackedScene" uid="uid://co3q06gnyqi4e" path="res://Basics/Ball.tscn" id="2_k15ql"]
+[ext_resource type="PackedScene" uid="uid://cqtng0pi7ov0d" path="res://Basics/Finish.tscn" id="3_k15ql"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_afs6g"]
+b = Vector2(-557, -284)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_afs6g"]
+size = Vector2(593.5, 25)
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_direction = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.6
+anchor_bottom = 1.0
+offset_right = 459.8
+texture = ExtResource("1_afs6g")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+position = Vector2(556, 422)
+shape = SubResource("SegmentShape2D_afs6g")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(855.75, 435)
+shape = SubResource("RectangleShape2D_afs6g")
+
+[node name="Node2D" parent="." instance=ExtResource("2_k15ql")]
+position = Vector2(379, 127)
+
+[node name="Node2D" parent="Node2D" instance=ExtResource("3_k15ql")]
+position = Vector2(696, 220)
