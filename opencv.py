@@ -5,33 +5,29 @@ import json
 import numpy as np
 import math
 
-
 # ------------ CONFIG ------------
 GODOT_IP = "127.0.0.1"
 GODOT_PORT = 4242
 SEND_EVERY_N_FRAMES = 1
-# -------------------------------
 
+MAX_MISSING_FRAMES = 5           # frames durante los que mantenemos la última mano
+ALPHA_SMOOTH = 0.5               # suavizado posición/ángulo (0=suaviza mucho, 1=sin suavizar)
+# -------------------------------
 
 mp_hands = mp.solutions.hands
 mp_drawing = mp.solutions.drawing_utils
 
-
 sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-
 
 cap = cv2.VideoCapture(0)
 if not cap.isOpened():
     print("No se pudo abrir la webcam")
     exit(1)
 
-
 frame_count = 0
-
 
 FINGER_TIPS = [4, 8, 12, 16, 20]
 FINGER_PIPS = [3, 6, 10, 14, 18]
-
 
 def get_finger_states(hand_landmarks):
     lm = hand_landmarks.landmark
@@ -56,7 +52,6 @@ def get_finger_states(hand_landmarks):
 
     return finger_states
 
-
 def angle_3pts(a, b, c):
     v1 = np.array([a.x - b.x, a.y - b.y])
     v2 = np.array([c.x - b.x, c.y - b.y])
@@ -67,14 +62,12 @@ def angle_3pts(a, b, c):
     cos = np.clip(dot / norm, -1.0, 1.0)
     return math.degrees(math.acos(cos))
 
-
 def finger_is_straight(lm, joints, tol_deg=30.0):
     a = lm[joints[0]]
     b = lm[joints[1]]
     c = lm[joints[2]]
     ang = angle_3pts(a, b, c)
     return ang > (180.0 - tol_deg)
-
 
 def thumb_is_extended(lm, threshold=0.1):
     wrist = lm[0]
@@ -83,7 +76,6 @@ def thumb_is_extended(lm, threshold=0.1):
     dy = thumb_tip.y - wrist.y
     dist = math.sqrt(dx*dx + dy*dy)
     return dist > threshold
-
 
 def classify_hand_shape(hand_landmarks):
     lm = hand_landmarks.landmark
@@ -100,7 +92,7 @@ def classify_hand_shape(hand_landmarks):
     if f["index"] and f["pinky"] and not f["middle"] and not f["ring"]:
         return "rock", False
 
-    # L mejorada con detección de invertida
+    # L con detección de invertida
     if f["index"] and not f["ring"] and not f["pinky"]:
         index_straight = finger_is_straight(lm, index_joints, tol_deg=45.0)
         thumb_ext = thumb_is_extended(lm, threshold=0.08)
@@ -119,7 +111,6 @@ def classify_hand_shape(hand_landmarks):
                 cos = np.clip(dot / norm, -1.0, 1.0)
                 ang = math.degrees(math.acos(cos))
                 if 30.0 <= ang <= 150.0:
-                    # Detectar si está invertida: pulgar debajo del índice
                     inverted = tip_thumb.y > tip_index.y
                     return "L", inverted
 
@@ -128,7 +119,6 @@ def classify_hand_shape(hand_landmarks):
         return "peace", False
 
     return "unknown", False
-
 
 def draw_rotated_box_for_finger(frame, lm, finger_indices, color=(255, 0, 0), thickness=2):
     pts = []
@@ -147,12 +137,22 @@ def draw_rotated_box_for_finger(frame, lm, finger_indices, color=(255, 0, 0), th
 
     return pts
 
+# Estado para “hold last value” y suavizado
+last_hands_data = []
+missing_frames = 0
+smooth_x = {}
+smooth_y = {}
+smooth_angle = {}
+
+# Última pose válida por mano (nunca "unknown")
+last_shape = {}      # idx_hand -> "index", "L", "rock", "peace"
+last_inverted = {}   # idx_hand -> bool
 
 with mp_hands.Hands(
     max_num_hands=2,
     model_complexity=1,
-    min_detection_confidence=0.5,
-    min_tracking_confidence=0.5
+    min_detection_confidence=0.6,
+    min_tracking_confidence=0.7
 ) as hands:
 
     while True:
@@ -170,15 +170,31 @@ with mp_hands.Hands(
         hands_data = []
 
         if results.multi_hand_landmarks and results.multi_handedness:
-            for hand_landmarks, handedness in zip(
-                results.multi_hand_landmarks,
-                results.multi_handedness
+            for idx_hand, (hand_landmarks, handedness) in enumerate(
+                zip(results.multi_hand_landmarks, results.multi_handedness)
             ):
                 hand_label = handedness.classification[0].label
                 lm = hand_landmarks.landmark
 
-                shape, inverted = classify_hand_shape(hand_landmarks)
+                # Gesto detectado en este frame
+                raw_shape, raw_inverted = classify_hand_shape(hand_landmarks)
 
+                # Inicializa último gesto válido si no existe
+                if idx_hand not in last_shape:
+                    # gesto por defecto si aún no se ha detectado nada
+                    last_shape[idx_hand] = "index"
+                    last_inverted[idx_hand] = False
+
+                # Si el crudo no es unknown, actualizamos el último válido
+                if raw_shape != "unknown":
+                    last_shape[idx_hand] = raw_shape
+                    last_inverted[idx_hand] = raw_inverted
+
+                # Lo que usamos siempre es el último válido (nunca unknown)
+                shape = last_shape[idx_hand]
+                inverted = last_inverted[idx_hand]
+
+                # Selección de dedos para el bounding
                 if shape == "index":
                     fingers_for_shape = [[5, 6, 7, 8]]
                 elif shape == "rock":
@@ -188,6 +204,7 @@ with mp_hands.Hands(
                 elif shape == "peace":
                     fingers_for_shape = [[5, 6, 7, 8], [9, 10, 11, 12]]
                 else:
+                    # por si añades más en un futuro
                     fingers_for_shape = [[5, 6, 7, 8]]
 
                 all_pts = []
@@ -227,14 +244,30 @@ with mp_hands.Hands(
                 angle_rad = math.atan2(vy, vx)
                 angle_deg = math.degrees(angle_rad)
 
+                # Suavizado por mano usando idx_hand como identificador
+                if idx_hand not in smooth_x:
+                    smooth_x[idx_hand] = center_x
+                    smooth_y[idx_hand] = center_y
+                    smooth_angle[idx_hand] = angle_deg
+                else:
+                    smooth_x[idx_hand] = int(
+                        ALPHA_SMOOTH * center_x + (1 - ALPHA_SMOOTH) * smooth_x[idx_hand]
+                    )
+                    smooth_y[idx_hand] = int(
+                        ALPHA_SMOOTH * center_y + (1 - ALPHA_SMOOTH) * smooth_y[idx_hand]
+                    )
+                    smooth_angle[idx_hand] = (
+                        ALPHA_SMOOTH * angle_deg + (1 - ALPHA_SMOOTH) * smooth_angle[idx_hand]
+                    )
+
                 hand_dict = {
-                    "x": center_x,
-                    "y": center_y,
+                    "x": smooth_x[idx_hand],
+                    "y": smooth_y[idx_hand],
                     "len_x": length_x,
                     "len_y": length_y,
                     "label": hand_label,
                     "shape": shape,
-                    "angle": angle_deg,
+                    "angle": smooth_angle[idx_hand],
                     "inverted": inverted
                 }
 
@@ -246,6 +279,19 @@ with mp_hands.Hands(
                     cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 255, 255), 2
                 )
 
+            # Se detectaron manos en este frame
+            missing_frames = 0
+            last_hands_data = hands_data
+
+        else:
+            # No hay manos detectadas en este frame: mantenemos últimas durante MAX_MISSING_FRAMES
+            missing_frames += 1
+            if missing_frames <= MAX_MISSING_FRAMES:
+                hands_data = last_hands_data
+            else:
+                hands_data = []
+
+        # Envío a Godot
         if hands_data and frame_count % SEND_EVERY_N_FRAMES == 0:
             data = {
                 "hands": hands_data,
@@ -260,7 +306,6 @@ with mp_hands.Hands(
         cv2.imshow("MediaPipe Gestos - Envío a Godot", frame)
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
-
 
 cap.release()
 cv2.destroyAllWindows()

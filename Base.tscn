@@ -27,7 +27,7 @@ texture = ExtResource("1_i812h")
 script = ExtResource("1_nfj5t")
 
 [node name="ColorRect" type="ColorRect" parent="."]
-layout_mode = 1
+layout_mode = 0
 color = Color(0.0142752165, 0.014275218, 0.014275218, 1)
 script = ExtResource("2_b56jl")
 hand_receiver_path = NodePath("../Node")
@@ -39,7 +39,7 @@ texture = ExtResource("4_22hco")
 texture = ExtResource("5_nopgj")
 
 [node name="ColorRect2" type="ColorRect" parent="."]
-layout_mode = 1
+layout_mode = 0
 color = Color(0.0142752165, 0.014275218, 0.014275218, 1)
 script = ExtResource("2_b56jl")
 hand_receiver_path = NodePath("../Node")
@@ -50,3 +50,4 @@ texture = ExtResource("4_22hco")
 
 [node name="L" type="Sprite2D" parent="ColorRect2"]
 texture = ExtResource("5_nopgj")
+flip_v = true
