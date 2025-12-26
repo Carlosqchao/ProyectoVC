@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://byrgpfbmyhhc0"]
 
-[ext_resource type="Script" uid="uid://cjxkiac1hhrqh" path="res://hand_receiver.gd" id="1_7b4yr"]
-[ext_resource type="Script" uid="uid://cp23bkhkwpwcf" path="res://HandCursor.gd" id="2_3s18g"]
+[ext_resource type="Script" uid="uid://cjxkiac1hhrqh" path="res://Scripts/hand_receiver.gd" id="1_7b4yr"]
+[ext_resource type="Script" uid="uid://cp23bkhkwpwcf" path="res://Scripts/HandCursor.gd" id="2_3s18g"]
 [ext_resource type="PackedScene" uid="uid://cl48cocyukqt7" path="res://Basics/HandBlocks/L.tscn" id="3_7b4yr"]
 [ext_resource type="PackedScene" uid="uid://bitrm340wg2oq" path="res://Basics/HandBlocks/Balde.tscn" id="4_3s18g"]
 

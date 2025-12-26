@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bymvqs6o1wht8"]
 
-[ext_resource type="Texture2D" uid="uid://billtdlfit3ly" path="res://Basics/Tetris_Block_Image.png" id="1_1i65m"]
+[ext_resource type="Texture2D" uid="uid://billtdlfit3ly" path="res://assets/Tetris_Block_Image.png" id="1_1i65m"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dq5n1"]
 size = Vector2(164, 42)

@@ -1,9 +1,15 @@
-[gd_scene load_steps=5 format=3 uid="uid://clh5krtb7bdj"]
+[gd_scene load_steps=7 format=3 uid="uid://ye5yqvqydxqd"]
 
-[ext_resource type="Texture2D" uid="uid://bpb0gfs4y3apm" path="res://fondo.jpg" id="1_afs6g"]
+[ext_resource type="Texture2D" uid="uid://bpb0gfs4y3apm" path="res://assets/fondo.jpg" id="1_afs6g"]
 [ext_resource type="PackedScene" uid="uid://co3q06gnyqi4e" path="res://Basics/Ball.tscn" id="2_k15ql"]
 [ext_resource type="PackedScene" uid="uid://bymvqs6o1wht8" path="res://Basics/IBlock.tscn" id="2_us5lx"]
 [ext_resource type="PackedScene" uid="uid://cqtng0pi7ov0d" path="res://Basics/Finish.tscn" id="3_k15ql"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_506po"]
+size = Vector2(639.75, 16.000008)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v115i"]
+size = Vector2(1166, 20)
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -14,35 +20,37 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="TextureRect" type="TextureRect" parent="."]
-layout_direction = 1
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 0.6
-anchor_bottom = 1.0
-offset_left = -4.0
-offset_top = 12.0
-offset_right = 455.8
-offset_bottom = 12.0
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
 texture = ExtResource("1_afs6g")
 
-[node name="Node2D" parent="TextureRect" instance=ExtResource("2_us5lx")]
-position = Vector2(328, 558)
-scale = Vector2(3, 1)
+[node name="Finish" parent="." instance=ExtResource("3_k15ql")]
+position = Vector2(1067, 274)
 
-[node name="Node2D2" parent="TextureRect" instance=ExtResource("2_us5lx")]
-position = Vector2(-10.999985, 329)
-scale = Vector2(3, 1)
+[node name="Ball" parent="." instance=ExtResource("2_k15ql")]
+position = Vector2(36, 314)
 
-[node name="Node2D3" parent="TextureRect" instance=ExtResource("2_us5lx")]
-position = Vector2(646, 335)
-scale = Vector2(3, 1)
-
-[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+[node name="Node2D" parent="." instance=ExtResource("2_us5lx")]
+position = Vector2(-60, 376)
+scale = Vector2(7.3, 1)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
-[node name="Ball" parent="." instance=ExtResource("2_k15ql")]
-position = Vector2(586, 516)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(1161, 325)
+rotation = 1.5707964
+shape = SubResource("RectangleShape2D_506po")
 
-[node name="Finish" parent="." instance=ExtResource("3_k15ql")]
-position = Vector2(78, 234)
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+position = Vector2(-9, 319)
+rotation = 1.5707964
+shape = SubResource("RectangleShape2D_506po")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
+position = Vector2(574, -7)
+shape = SubResource("RectangleShape2D_v115i")

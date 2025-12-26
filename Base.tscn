@@ -1,10 +1,10 @@
 [gd_scene load_steps=6 format=3 uid="uid://cepd568ojr566"]
 
-[ext_resource type="Texture2D" uid="uid://bpb0gfs4y3apm" path="res://fondo.jpg" id="1_i812h"]
-[ext_resource type="Script" uid="uid://cjxkiac1hhrqh" path="res://hand_receiver.gd" id="1_nfj5t"]
-[ext_resource type="Script" uid="uid://cp23bkhkwpwcf" path="res://HandCursor.gd" id="2_b56jl"]
-[ext_resource type="Texture2D" uid="uid://b3h8vh7rn7aef" path="res://Balde2.png" id="4_22hco"]
-[ext_resource type="Texture2D" uid="uid://ddu5etg0xo854" path="res://L.png" id="5_nopgj"]
+[ext_resource type="Texture2D" uid="uid://bpb0gfs4y3apm" path="res://assets/fondo.jpg" id="1_i812h"]
+[ext_resource type="Script" uid="uid://cjxkiac1hhrqh" path="res://Scripts/hand_receiver.gd" id="1_nfj5t"]
+[ext_resource type="Script" uid="uid://cp23bkhkwpwcf" path="res://Scripts/HandCursor.gd" id="2_b56jl"]
+[ext_resource type="Texture2D" uid="uid://b3h8vh7rn7aef" path="res://assets/Balde2.png" id="4_22hco"]
+[ext_resource type="Texture2D" uid="uid://ddu5etg0xo854" path="res://assets/L.png" id="5_nopgj"]
 
 [node name="Control" type="Control"]
 layout_mode = 3

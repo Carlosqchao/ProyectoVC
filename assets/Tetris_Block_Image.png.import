@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cofyfptd7y8ai"
-path="res://.godot/imported/pelota.png-903a05604739cd4361da0093c4d4c738.ctex"
+uid="uid://billtdlfit3ly"
+path="res://.godot/imported/Tetris_Block_Image.png-9ddd3b1cadabc815ad63b09fdfefed26.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Basics/pelota.png"
-dest_files=["res://.godot/imported/pelota.png-903a05604739cd4361da0093c4d4c738.ctex"]
+source_file="res://assets/Tetris_Block_Image.png"
+dest_files=["res://.godot/imported/Tetris_Block_Image.png-9ddd3b1cadabc815ad63b09fdfefed26.ctex"]
 
 [params]
 

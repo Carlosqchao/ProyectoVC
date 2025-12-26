@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ddu5etg0xo854"
-path="res://.godot/imported/L.png-1c4c5ceb86c5fdbdf5f2bdcd047ca6f0.ctex"
+uid="uid://b3h8vh7rn7aef"
+path="res://.godot/imported/Balde2.png-9abccdaa1c1a8eb016b9339c5b1e74d3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://L.png"
-dest_files=["res://.godot/imported/L.png-1c4c5ceb86c5fdbdf5f2bdcd047ca6f0.ctex"]
+source_file="res://assets/Balde2.png"
+dest_files=["res://.godot/imported/Balde2.png-9abccdaa1c1a8eb016b9339c5b1e74d3.ctex"]
 
 [params]
 
