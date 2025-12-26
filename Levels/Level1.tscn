@@ -26,7 +26,7 @@ offset_bottom = 12.0
 texture = ExtResource("1_afs6g")
 
 [node name="Node2D" parent="TextureRect" instance=ExtResource("2_us5lx")]
-position = Vector2(333, 561)
+position = Vector2(328, 558)
 scale = Vector2(3, 1)
 
 [node name="Node2D2" parent="TextureRect" instance=ExtResource("2_us5lx")]
@@ -34,7 +34,7 @@ position = Vector2(-10.999985, 329)
 scale = Vector2(3, 1)
 
 [node name="Node2D3" parent="TextureRect" instance=ExtResource("2_us5lx")]
-position = Vector2(649, 321)
+position = Vector2(646, 335)
 scale = Vector2(3, 1)
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="."]
@@ -42,7 +42,7 @@ scale = Vector2(3, 1)
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
 [node name="Ball" parent="." instance=ExtResource("2_k15ql")]
-position = Vector2(594, 512)
+position = Vector2(586, 516)
 
 [node name="Finish" parent="." instance=ExtResource("3_k15ql")]
-position = Vector2(85, 227)
+position = Vector2(78, 234)

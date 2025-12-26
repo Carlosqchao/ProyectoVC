@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=3 uid="uid://bitrm340wg2oq"]
+
+[ext_resource type="Texture2D" uid="uid://b3h8vh7rn7aef" path="res://Balde2.png" id="1_mqwgc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7t1f1"]
+size = Vector2(20, 565.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8tql0"]
+size = Vector2(569.5, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s4gr2"]
+size = Vector2(567, 20)
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(370, 228)
+texture = ExtResource("1_mqwgc")
+
+[node name="AnimatableBody2D" type="AnimatableBody2D" parent="Sprite2D"]
+position = Vector2(1.5, -274)
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Sprite2D/AnimatableBody2D"]
+position = Vector2(274.5, 272)
+shape = SubResource("RectangleShape2D_7t1f1")
+
+[node name="AnimatableBody2D3" type="AnimatableBody2D" parent="Sprite2D"]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Sprite2D/AnimatableBody2D3"]
+position = Vector2(-276, 2.25)
+rotation = 1.5707964
+shape = SubResource("RectangleShape2D_8tql0")
+
+[node name="AnimatableBody2D2" type="AnimatableBody2D" parent="Sprite2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/AnimatableBody2D2"]
+position = Vector2(1.5, -274)
+shape = SubResource("RectangleShape2D_s4gr2")
