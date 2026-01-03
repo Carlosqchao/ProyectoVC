@@ -10,7 +10,7 @@ import time
 GODOT_IP = "127.0.0.1"
 GODOT_PORT = 4242
 SEND_EVERY_N_FRAMES = 1
-MODEL_PATH = "hand_landmarker.task" 
+MODEL_PATH = "hand_landmarker.task"  # pon aquí la ruta al modelo
 # -------------------------------
 
 # MediaPipe Tasks (nueva API)

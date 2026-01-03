@@ -1,10 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://cepd568ojr566"]
+[gd_scene load_steps=8 format=3 uid="uid://cepd568ojr566"]
 
 [ext_resource type="Texture2D" uid="uid://bpb0gfs4y3apm" path="res://assets/fondo.jpg" id="1_i812h"]
 [ext_resource type="Script" uid="uid://cjxkiac1hhrqh" path="res://Scripts/hand_receiver.gd" id="1_nfj5t"]
 [ext_resource type="Script" uid="uid://cp23bkhkwpwcf" path="res://Scripts/HandCursor.gd" id="2_b56jl"]
-[ext_resource type="Texture2D" uid="uid://b3h8vh7rn7aef" path="res://assets/Balde2.png" id="4_22hco"]
-[ext_resource type="Texture2D" uid="uid://ddu5etg0xo854" path="res://assets/L.png" id="5_nopgj"]
+[ext_resource type="PackedScene" uid="uid://cl48cocyukqt7" path="res://Basics/HandBlocks/L.tscn" id="5_swcnr"]
+[ext_resource type="PackedScene" uid="uid://bitrm340wg2oq" path="res://Basics/HandBlocks/Balde.tscn" id="6_22hco"]
+[ext_resource type="PackedScene" uid="uid://bymvqs6o1wht8" path="res://Basics/IBlock.tscn" id="7_2lvr1"]
+[ext_resource type="PackedScene" uid="uid://co3q06gnyqi4e" path="res://Basics/Ball.tscn" id="8_4phwr"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -32,11 +34,11 @@ color = Color(0.0142752165, 0.014275218, 0.014275218, 1)
 script = ExtResource("2_b56jl")
 hand_receiver_path = NodePath("../Node")
 
-[node name="Balde" type="Sprite2D" parent="ColorRect"]
-texture = ExtResource("4_22hco")
+[node name="Balde" parent="ColorRect" instance=ExtResource("6_22hco")]
+position = Vector2(-802, -438)
 
-[node name="L" type="Sprite2D" parent="ColorRect"]
-texture = ExtResource("5_nopgj")
+[node name="L" parent="ColorRect" instance=ExtResource("5_swcnr")]
+position = Vector2(-802, -438)
 
 [node name="ColorRect2" type="ColorRect" parent="."]
 layout_mode = 1
@@ -45,8 +47,15 @@ script = ExtResource("2_b56jl")
 hand_receiver_path = NodePath("../Node")
 hand_label = "Right"
 
-[node name="Balde" type="Sprite2D" parent="ColorRect2"]
-texture = ExtResource("4_22hco")
+[node name="Balde" parent="ColorRect2" instance=ExtResource("6_22hco")]
+position = Vector2(-802, -438)
 
-[node name="L" type="Sprite2D" parent="ColorRect2"]
-texture = ExtResource("5_nopgj")
+[node name="L" parent="ColorRect2" instance=ExtResource("5_swcnr")]
+position = Vector2(-802, -438)
+
+[node name="Iblock" parent="." instance=ExtResource("7_2lvr1")]
+position = Vector2(-82, 365)
+scale = Vector2(7.5, 1)
+
+[node name="Node2D" parent="." instance=ExtResource("8_4phwr")]
+position = Vector2(571, 293)

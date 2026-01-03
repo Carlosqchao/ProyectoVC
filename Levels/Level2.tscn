@@ -33,10 +33,6 @@ scale = Vector2(1.5, 1)
 position = Vector2(902, 344)
 scale = Vector2(1.5, 1)
 
-[node name="StaticBody2D2" type="StaticBody2D" parent="."]
-
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-
 [node name="Ball" parent="." instance=ExtResource("3_v115i")]
 position = Vector2(70, 302)
 
