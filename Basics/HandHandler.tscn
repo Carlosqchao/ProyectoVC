@@ -16,16 +16,6 @@ script = ExtResource("2_3s18g")
 hand_receiver_path = NodePath("..")
 
 [node name="L" parent="Node/ColorRect3" instance=ExtResource("3_7b4yr")]
+position = Vector2(0, -1)
 
 [node name="Balde" parent="Node/ColorRect3" instance=ExtResource("4_3s18g")]
-
-[node name="ColorRect4" type="ColorRect" parent="Node"]
-color = Color(0.0142752165, 0.014275218, 0.014275218, 1)
-script = ExtResource("2_3s18g")
-hand_receiver_path = NodePath("..")
-hand_label = "Right"
-
-[node name="L" parent="Node/ColorRect4" instance=ExtResource("3_7b4yr")]
-
-[node name="Balde" parent="Node/ColorRect4" instance=ExtResource("4_3s18g")]
-position = Vector2(-838, -543)
