@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://byrgpfbmyhhc0"]
+
+[ext_resource type="Script" uid="uid://cjxkiac1hhrqh" path="res://Scripts/hand_receiver.gd" id="1_7b4yr"]
+[ext_resource type="Script" uid="uid://cp23bkhkwpwcf" path="res://Scripts/HandCursor.gd" id="2_3s18g"]
+[ext_resource type="PackedScene" uid="uid://cl48cocyukqt7" path="res://Basics/HandBlocks/L.tscn" id="3_7b4yr"]
+[ext_resource type="PackedScene" uid="uid://bitrm340wg2oq" path="res://Basics/HandBlocks/Balde.tscn" id="4_3s18g"]
+
+[node name="Node" type="Node"]
+
+[node name="Node" type="Node" parent="."]
+script = ExtResource("1_7b4yr")
+
+[node name="ColorRect3" type="ColorRect" parent="Node"]
+color = Color(0.0142752165, 0.014275218, 0.014275218, 1)
+script = ExtResource("2_3s18g")
+hand_receiver_path = NodePath("..")
+
+[node name="L" parent="Node/ColorRect3" instance=ExtResource("3_7b4yr")]
+
+[node name="Balde" parent="Node/ColorRect3" instance=ExtResource("4_3s18g")]
+
+[node name="ColorRect4" type="ColorRect" parent="Node"]
+color = Color(0.0142752165, 0.014275218, 0.014275218, 1)
+script = ExtResource("2_3s18g")
+hand_receiver_path = NodePath("..")
+hand_label = "Right"
+
+[node name="L" parent="Node/ColorRect4" instance=ExtResource("3_7b4yr")]
+
+[node name="Balde" parent="Node/ColorRect4" instance=ExtResource("4_3s18g")]
+position = Vector2(-838, -543)

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cofyfptd7y8ai"
-path="res://.godot/imported/pelota.png-8dfc6f3c2b85eb08b72c2f576aeb500b.ctex"
+uid="uid://b3h8vh7rn7aef"
+path="res://.godot/imported/Balde2.png-9abccdaa1c1a8eb016b9339c5b1e74d3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://pelota.png"
-dest_files=["res://.godot/imported/pelota.png-8dfc6f3c2b85eb08b72c2f576aeb500b.ctex"]
+source_file="res://assets/Balde2.png"
+dest_files=["res://.godot/imported/Balde2.png-9abccdaa1c1a8eb016b9339c5b1e74d3.ctex"]
 
 [params]
 

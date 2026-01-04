@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://bitrm340wg2oq"]
+
+[ext_resource type="Texture2D" uid="uid://b3h8vh7rn7aef" path="res://assets/Balde2.png" id="1_mqwgc"]
+[ext_resource type="Script" uid="uid://pmfydhm6f547" path="res://Basics/HandBlocks/character_body_2d.gd" id="1_s4gr2"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+script = ExtResource("1_s4gr2")
+
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
+position = Vector2(370, 228)
+texture = ExtResource("1_mqwgc")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="CharacterBody2D"]
+position = Vector2(78, 514)
+polygon = PackedVector2Array(5, 0, 28, 0, 27, -548, 555, -548, 557, 1, 582, 1, 581, -579, 4, -578)
