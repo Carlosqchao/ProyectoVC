@@ -91,19 +91,13 @@ func _process(delta: float) -> void:
 		found = true
 		break
 
-	# Si no se encontró mano, ponemos la velocidad de los cuerpos a 0
-	if not found:
-		var balde_body: CharacterBody2D = balde_scene.get_node("CharacterBody2D")
-		var l_body: CharacterBody2D = l_scene.get_node("CharacterBody2D")
-		balde_body.external_velocity = Vector2.ZERO
-		l_body.external_velocity = Vector2.ZERO
-
 	visible = found
 
 
 func _update_shape_scene(root: Node2D, len_x: float, len_y: float, angle_deg: float, delta: float, hand_detected: bool) -> void:
 	var body: CharacterBody2D = root.get_node("CharacterBody2D")
 	var sprite: Sprite2D = body.get_node("Sprite2D")
+	print("Forma Balde")
 
 	if sprite.texture:
 		var tex_size = sprite.texture.get_size()
@@ -119,13 +113,14 @@ func _update_shape_scene(root: Node2D, len_x: float, len_y: float, angle_deg: fl
 		var desired_pos = root.global_position
 		var current_pos = body.global_position
 		var displacement = desired_pos - current_pos
-		body.external_velocity = displacement / delta
+		body.external_velocity = (displacement / delta)/5
 	# Si no hay mano, no se toca external_velocity
 
 
 func _update_shape_scene_L(root: Node2D, len_x: float, len_y: float, angle_deg: float, inverted: bool, delta: float, hand_detected: bool) -> void:
 	var body: CharacterBody2D = root.get_node("CharacterBody2D")
 	var sprite: Sprite2D = body.get_node("Sprite2D")
+	print("Forma L")
 
 	if sprite.texture:
 		var tex_size = sprite.texture.get_size()
