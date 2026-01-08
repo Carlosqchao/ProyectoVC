@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b3h8vh7rn7aef"
-path="res://.godot/imported/Balde2.png-9abccdaa1c1a8eb016b9339c5b1e74d3.ctex"
+uid="uid://dh14s1bpm3e2q"
+path="res://.godot/imported/Iman.png-bdcd847a95243edb38ed4f541b87f40e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Balde2.png"
-dest_files=["res://.godot/imported/Balde2.png-9abccdaa1c1a8eb016b9339c5b1e74d3.ctex"]
+source_file="res://assets/Iman.png"
+dest_files=["res://.godot/imported/Iman.png-bdcd847a95243edb38ed4f541b87f40e.ctex"]
 
 [params]
 

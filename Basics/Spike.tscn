@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://manpniyvu1we"]
+
+[ext_resource type="Script" uid="uid://d1o0wu6e2egu7" path="res://Basics/Spike.gd" id="1_o6jug"]
+[ext_resource type="Texture2D" uid="uid://cr8mwjgboohyc" path="res://assets/pincho.png" id="1_xee3q"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(38, -34.199997)
+scale = Vector2(0.5, 0.188)
+collision_mask = 4
+script = ExtResource("1_o6jug")
+
+[node name="Sprite2D" type="Sprite2D" parent="Area2D"]
+texture = ExtResource("1_xee3q")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+position = Vector2(-254, 559.57446)
+scale = Vector2(2, 5.319149)
+polygon = PackedVector2Array(166, -70, 127, -146, 89, -70)
+
+[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered_Spikes"]

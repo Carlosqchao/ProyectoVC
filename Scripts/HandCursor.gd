@@ -97,7 +97,6 @@ func _process(delta: float) -> void:
 func _update_shape_scene(root: Node2D, len_x: float, len_y: float, angle_deg: float, delta: float, hand_detected: bool) -> void:
 	var body: CharacterBody2D = root.get_node("CharacterBody2D")
 	var sprite: Sprite2D = body.get_node("Sprite2D")
-	print("Forma Balde")
 
 	if sprite.texture:
 		var tex_size = sprite.texture.get_size()
@@ -120,7 +119,6 @@ func _update_shape_scene(root: Node2D, len_x: float, len_y: float, angle_deg: fl
 func _update_shape_scene_L(root: Node2D, len_x: float, len_y: float, angle_deg: float, inverted: bool, delta: float, hand_detected: bool) -> void:
 	var body: CharacterBody2D = root.get_node("CharacterBody2D")
 	var sprite: Sprite2D = body.get_node("Sprite2D")
-	print("Forma L")
 
 	if sprite.texture:
 		var tex_size = sprite.texture.get_size()

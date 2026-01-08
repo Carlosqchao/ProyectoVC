@@ -10,15 +10,20 @@ import time
 GODOT_IP = "127.0.0.1"
 GODOT_PORT = 4242
 SEND_EVERY_N_FRAMES = 1
-MODEL_PATH = "hand_landmarker.task"  # pon aquí la ruta al modelo
+
+MAX_MISSING_FRAMES = 5
+ALPHA_SMOOTH = 0.5
+
+MODEL_PATH = "hand_landmarker.task"  # ruta al modelo de MediaPipe Tasks
 # -------------------------------
 
-# MediaPipe Tasks (nueva API)
+# --- MediaPipe Tasks (nueva API) ---
 BaseOptions = mp.tasks.BaseOptions
 VisionRunningMode = mp.tasks.vision.RunningMode
 HandLandmarker = mp.tasks.vision.HandLandmarker
 HandLandmarkerOptions = mp.tasks.vision.HandLandmarkerOptions
 HandLandmarkerResult = mp.tasks.vision.HandLandmarkerResult
+ImageMP = mp.Image
 
 sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 
@@ -31,10 +36,86 @@ frame_count = 0
 
 FINGER_TIPS = [4, 8, 12, 16, 20]
 FINGER_PIPS = [3, 6, 10, 14, 18]
+FINGER_MCPS = [2, 5, 9, 13, 17]
 
 # -------------------------------------------------------------------
-# FUNCIONES DE GESTOS (adaptadas para usar estructuras de HandLandmarkerResult)
+# UTILIDADES ÁNGULOS / SUAVIZADO
 # -------------------------------------------------------------------
+def normalize_angle(angle: float) -> float:
+    """Normaliza un ángulo al rango [-180, 180)."""
+    while angle >= 180:
+        angle -= 360
+    while angle < -180:
+        angle += 360
+    return angle
+
+def smooth_angle_circular(new_angle, old_angle, alpha):
+    """Suaviza ángulos considerando discontinuidad circular."""
+    new_angle = normalize_angle(new_angle)
+    old_angle = normalize_angle(old_angle)
+
+    diff = new_angle - old_angle
+    if diff > 180:
+        diff -= 360
+    elif diff < -180:
+        diff += 360
+
+    return normalize_angle(old_angle + alpha * diff)
+
+# -------------------------------------------------------------------
+# GESTOS (adaptado para HandLandmarkerResult: lm es lista de 21 landmarks)
+# -------------------------------------------------------------------
+def get_palm_normal(lm):
+    p0 = np.array([lm[0].x, lm[0].y, lm[0].z])
+    p5 = np.array([lm[5].x, lm[5].y, lm[5].z])
+    p17 = np.array([lm[17].x, lm[17].y, lm[17].z])
+
+    v1 = p5 - p0
+    v2 = p17 - p0
+    normal = np.cross(v1, v2)
+
+    norm = np.linalg.norm(normal)
+    if norm > 0:
+        normal /= norm
+
+    return normal
+
+def finger_is_extended_3d(lm, tip_idx, pip_idx, mcp_idx, palm_normal):
+    tip = np.array([lm[tip_idx].x, lm[tip_idx].y, lm[tip_idx].z])
+    pip = np.array([lm[pip_idx].x, lm[pip_idx].y, lm[pip_idx].z])
+    mcp = np.array([lm[mcp_idx].x, lm[mcp_idx].y, lm[mcp_idx].z])
+
+    tip_proj = np.dot(tip - mcp, palm_normal)
+    pip_proj = np.dot(pip - mcp, palm_normal)
+
+    return tip_proj > pip_proj
+
+def thumb_is_extended_3d(lm, palm_normal, handedness: str):
+    thumb_tip = np.array([lm[4].x, lm[4].y, lm[4].z])
+    thumb_mcp = np.array([lm[2].x, lm[2].y, lm[2].z])
+    wrist = np.array([lm[0].x, lm[0].y, lm[0].z])
+    index_mcp = np.array([lm[5].x, lm[5].y, lm[5].z])
+
+    thumb_vec = thumb_tip - thumb_mcp
+    palm_vec = index_mcp - wrist
+
+    dot = np.dot(thumb_vec, palm_vec)
+    norms = np.linalg.norm(thumb_vec) * np.linalg.norm(palm_vec)
+    if norms == 0:
+        return False
+
+    angle = math.degrees(math.acos(np.clip(dot / norms, -1.0, 1.0)))
+    return angle > 40
+
+def get_finger_states_3d(lm, handedness):
+    palm_normal = get_palm_normal(lm)
+    return {
+        "thumb": thumb_is_extended_3d(lm, palm_normal, handedness),
+        "index": finger_is_extended_3d(lm, 8, 6, 5, palm_normal),
+        "middle": finger_is_extended_3d(lm, 12, 10, 9, palm_normal),
+        "ring": finger_is_extended_3d(lm, 16, 14, 13, palm_normal),
+        "pinky": finger_is_extended_3d(lm, 20, 18, 17, palm_normal),
+    }
 
 def angle_3pts(a, b, c):
     v1 = np.array([a.x - b.x, a.y - b.y])
@@ -53,54 +134,23 @@ def finger_is_straight(lm, joints, tol_deg=30.0):
     ang = angle_3pts(a, b, c)
     return ang > (180.0 - tol_deg)
 
-def thumb_is_extended(lm, threshold=0.1):
-    wrist = lm[0]
-    thumb_tip = lm[4]
-    dx = thumb_tip.x - wrist.x
-    dy = thumb_tip.y - wrist.y
-    dist = math.sqrt(dx * dx + dy * dy)
-    return dist > threshold
-
-def get_finger_states(lm):
-    finger_states = {
-        "thumb": False,
-        "index": False,
-        "middle": False,
-        "ring": False,
-        "pinky": False,
-    }
-
-    if lm[FINGER_TIPS[0]].y < lm[FINGER_PIPS[0]].y:
-        finger_states["thumb"] = True
-    if lm[FINGER_TIPS[1]].y < lm[FINGER_PIPS[1]].y:
-        finger_states["index"] = True
-    if lm[FINGER_TIPS[2]].y < lm[FINGER_PIPS[2]].y:
-        finger_states["middle"] = True
-    if lm[FINGER_TIPS[3]].y < lm[FINGER_PIPS[3]].y:
-        finger_states["ring"] = True
-    if lm[FINGER_TIPS[4]].y < lm[FINGER_PIPS[4]].y:
-        finger_states["pinky"] = True
-
-    return finger_states
-
-def classify_hand_shape(lm):
-    f = get_finger_states(lm)
-
+def classify_hand_shape(lm, handedness):
+    f = get_finger_states_3d(lm, handedness)
     index_joints = [5, 6, 7, 8]
 
     # index
     if f["index"] and not f["middle"] and not f["ring"] and not f["pinky"]:
-        if not thumb_is_extended(lm, threshold=0.08):
+        if not f["thumb"]:
             return "index", False
 
     # rock
     if f["index"] and f["pinky"] and not f["middle"] and not f["ring"]:
         return "rock", False
 
-    # L mejorada con detección de invertida
+    # L con invertida
     if f["index"] and not f["ring"] and not f["pinky"]:
         index_straight = finger_is_straight(lm, index_joints, tol_deg=45.0)
-        thumb_ext = thumb_is_extended(lm, threshold=0.08)
+        thumb_ext = f["thumb"]
 
         if index_straight and thumb_ext:
             base = lm[5]
@@ -142,22 +192,26 @@ def draw_rotated_box_for_finger(frame, lm, finger_indices, color=(255, 0, 0), th
 
     return pts
 
-# -------------------------------------------------------------------
-# CALLBACK PARA HANDLANDMARKER (LIVE_STREAM)
-# -------------------------------------------------------------------
+# -------------------- ESTADO POR MANO --------------------
+last_hands_data = {}
+missing_frames_per_hand = {}
+smooth_x = {}
+smooth_y = {}
+smooth_angle = {}
+last_shape = {}
+last_inverted = {}
 
-# Usaremos variables globales simples para compartir resultados del callback con el bucle principal.
+# -------------------- CALLBACK TASKS ---------------------
 last_result = None
 
-def result_callback(result: HandLandmarkerResult, output_image: mp.Image, timestamp_ms: int):
+def result_callback(result: HandLandmarkerResult, output_image: ImageMP, timestamp_ms: int):
     global last_result
     last_result = result
 
-# Configurar HandLandmarker en modo LIVE_STREAM
 options = HandLandmarkerOptions(
     base_options=BaseOptions(model_asset_path=MODEL_PATH),
     running_mode=VisionRunningMode.LIVE_STREAM,
-    num_hands=2,
+    num_hands=1,
     result_callback=result_callback,
 )
 
@@ -171,27 +225,36 @@ with HandLandmarker.create_from_options(options) as landmarker:
         frame = cv2.flip(frame, 1)
         h, w, _ = frame.shape
 
-        # Convertir frame a MediaPipe Image
+        # enviar a MediaPipe Tasks
         frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-        mp_image = mp.Image(image_format=mp.ImageFormat.SRGB, data=frame_rgb)
-
-        # timestamp en ms (puedes usar time.time() * 1000 o un contador)
+        mp_image = ImageMP(image_format=mp.ImageFormat.SRGB, data=frame_rgb)
         timestamp_ms = int(time.time() * 1000)
         landmarker.detect_async(mp_image, timestamp_ms)
 
+        detected_hands = set()
         hands_data = []
 
-        # Usamos el último resultado disponible
         if last_result and last_result.hand_landmarks:
-            # last_result.hand_landmarks: lista de manos, cada una con 21 landmarks
-            # last_result.handedness: lista de listas de categorías (Left/Right)
             for hand_idx, hand_lm in enumerate(last_result.hand_landmarks):
                 lm = hand_lm  # lista de 21 landmarks
                 handedness_list = last_result.handedness[hand_idx]
                 hand_label = handedness_list[0].category_name  # "Left" o "Right"
+                detected_hands.add(hand_label)
 
-                shape, inverted = classify_hand_shape(lm)
+                raw_shape, raw_inverted = classify_hand_shape(lm, hand_label)
 
+                if hand_label not in last_shape:
+                    last_shape[hand_label] = "index"
+                    last_inverted[hand_label] = False
+
+                if raw_shape != "unknown":
+                    last_shape[hand_label] = raw_shape
+                    last_inverted[hand_label] = raw_inverted
+
+                shape = last_shape[hand_label]
+                inverted = last_inverted[hand_label]
+
+                # dedos usados para el bounding
                 if shape == "index":
                     fingers_for_shape = [[5, 6, 7, 8]]
                 elif shape == "rock":
@@ -204,7 +267,6 @@ with HandLandmarker.create_from_options(options) as landmarker:
                     fingers_for_shape = [[5, 6, 7, 8]]
 
                 all_pts = []
-
                 for finger_indices in fingers_for_shape:
                     pts = draw_rotated_box_for_finger(frame, lm, finger_indices)
                     all_pts.append(pts)
@@ -240,30 +302,77 @@ with HandLandmarker.create_from_options(options) as landmarker:
                 angle_rad = math.atan2(vy, vx)
                 angle_deg = math.degrees(angle_rad)
 
+                # suavizado
+                if hand_label not in smooth_x:
+                    smooth_x[hand_label] = center_x
+                    smooth_y[hand_label] = center_y
+                    smooth_angle[hand_label] = angle_deg
+                else:
+                    smooth_x[hand_label] = int(
+                        ALPHA_SMOOTH * center_x
+                        + (1 - ALPHA_SMOOTH) * smooth_x[hand_label]
+                    )
+                    smooth_y[hand_label] = int(
+                        ALPHA_SMOOTH * center_y
+                        + (1 - ALPHA_SMOOTH) * smooth_y[hand_label]
+                    )
+                    smooth_angle[hand_label] = smooth_angle_circular(
+                        angle_deg, smooth_angle[hand_label], ALPHA_SMOOTH
+                    )
+
+                missing_frames_per_hand[hand_label] = 0
+
                 hand_dict = {
-                    "x": center_x,
-                    "y": center_y,
+                    "x": smooth_x[hand_label],
+                    "y": smooth_y[hand_label],
                     "len_x": length_x,
                     "len_y": length_y,
                     "label": hand_label,
                     "shape": shape,
-                    "angle": angle_deg,
-                    "inverted": inverted
+                    "angle": smooth_angle[hand_label],
+                    "inverted": inverted,
                 }
 
                 hands_data.append(hand_dict)
+                last_hands_data[hand_label] = hand_dict
 
                 shape_text = shape + (" INV" if inverted else "")
                 cv2.putText(
-                    frame, shape_text, (x_min, y_min - 10),
-                    cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 255, 255), 2
+                    frame,
+                    f"{hand_label}: {shape_text}",
+                    (x_min, y_min - 10),
+                    cv2.FONT_HERSHEY_SIMPLEX,
+                    0.8,
+                    (0, 255, 255),
+                    2,
                 )
 
+        # manos no detectadas este frame
+        for hand_label in list(last_hands_data.keys()):
+            if hand_label not in detected_hands:
+                if hand_label not in missing_frames_per_hand:
+                    missing_frames_per_hand[hand_label] = 0
+
+                missing_frames_per_hand[hand_label] += 1
+
+                if missing_frames_per_hand[hand_label] <= MAX_MISSING_FRAMES:
+                    hands_data.append(last_hands_data[hand_label])
+                else:
+                    del last_hands_data[hand_label]
+                    del missing_frames_per_hand[hand_label]
+                    if hand_label in smooth_x:
+                        del smooth_x[hand_label]
+                        del smooth_y[hand_label]
+                        del smooth_angle[hand_label]
+                        del last_shape[hand_label]
+                        del last_inverted[hand_label]
+
+        # envío a Godot
         if hands_data and frame_count % SEND_EVERY_N_FRAMES == 0:
             data = {
                 "hands": hands_data,
                 "w": w,
-                "h": h
+                "h": h,
             }
             msg = json.dumps(data).encode("utf-8")
             sock.sendto(msg, (GODOT_IP, GODOT_PORT))
@@ -271,7 +380,7 @@ with HandLandmarker.create_from_options(options) as landmarker:
         frame_count += 1
 
         cv2.imshow("MediaPipe Gestos - Envío a Godot (Tasks)", frame)
-        if cv2.waitKey(1) & 0xFF == ord('q'):
+        if cv2.waitKey(1) & 0xFF == ord("q"):
             break
 
 cap.release()
