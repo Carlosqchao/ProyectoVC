@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dug2y2y03rhkt"]
+[gd_scene load_steps=10 format=3 uid="uid://dug2y2y03rhkt"]
 
 [ext_resource type="PackedScene" uid="uid://byrgpfbmyhhc0" path="res://Basics/HandHandler.tscn" id="1_5brs8"]
 [ext_resource type="Texture2D" uid="uid://bpb0gfs4y3apm" path="res://assets/fondo.jpg" id="2_qgpl5"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://manpniyvu1we" path="res://Basics/Scenery/Spike.tscn" id="6_so18s"]
 [ext_resource type="PackedScene" uid="uid://blw6fetirvd1x" path="res://Basics/Scenery/Void.tscn" id="7_vgbee"]
 [ext_resource type="PackedScene" uid="uid://cq4xf3fvribpn" path="res://Basics/Borders.tscn" id="8_lfbxl"]
+[ext_resource type="PackedScene" uid="uid://p6nxovhhtfrx" path="res://Levels/pausa.tscn" id="9_lfbxl"]
 
 [node name="Level4" type="Control"]
 layout_mode = 3
@@ -90,3 +91,5 @@ scale = Vector2(0.5, 1)
 position = Vector2(4, -2)
 
 [node name="borders" parent="." instance=ExtResource("8_lfbxl")]
+
+[node name="Pausa" parent="." instance=ExtResource("9_lfbxl")]

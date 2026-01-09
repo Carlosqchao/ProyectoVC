@@ -1,0 +1,52 @@
+[gd_scene load_steps=4 format=3 uid="uid://p6nxovhhtfrx"]
+
+[ext_resource type="Script" uid="uid://b57ewc3stbbx4" path="res://pausa.gd" id="1_6te7p"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_grpyg"]
+bg_color = Color(0, 0.6313726, 0.85882354, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oj03e"]
+bg_color = Color(0, 0.6306667, 0.86, 1)
+
+[node name="Pausa" type="CanvasLayer"]
+process_mode = 3
+script = ExtResource("1_6te7p")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.23921569)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -196.5
+offset_top = -158.0
+offset_right = 196.5
+offset_bottom = 158.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Level Selector" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_grpyg")
+text = "Level Selector
+"
+
+[node name="Exit" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_oj03e")
+text = "Exit"
+
+[connection signal="pressed" from="VBoxContainer/Level Selector" to="." method="_on_level_selector_pressed"]
+[connection signal="pressed" from="VBoxContainer/Exit" to="." method="_on_exit_pressed"]

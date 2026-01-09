@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://clh5krtb7bdj"]
+[gd_scene load_steps=9 format=3 uid="uid://clh5krtb7bdj"]
 
 [ext_resource type="Texture2D" uid="uid://bpb0gfs4y3apm" path="res://assets/fondo.jpg" id="1_lfj2m"]
 [ext_resource type="PackedScene" uid="uid://cqtng0pi7ov0d" path="res://Basics/Scenery/Finish.tscn" id="2_506po"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://byrgpfbmyhhc0" path="res://Basics/HandHandler.tscn" id="5_v115i"]
 [ext_resource type="PackedScene" uid="uid://cq4xf3fvribpn" path="res://Basics/Borders.tscn" id="6_w0h0a"]
 [ext_resource type="PackedScene" uid="uid://blw6fetirvd1x" path="res://Basics/Scenery/Void.tscn" id="7_m3ha0"]
+[ext_resource type="PackedScene" uid="uid://p6nxovhhtfrx" path="res://Levels/pausa.tscn" id="8_m3ha0"]
 
 [node name="Control2" type="Control"]
 layout_mode = 3
@@ -46,3 +47,5 @@ Level = "Level3"
 [node name="Borders" parent="." instance=ExtResource("6_w0h0a")]
 
 [node name="Void" parent="." instance=ExtResource("7_m3ha0")]
+
+[node name="Pausa" parent="." instance=ExtResource("8_m3ha0")]
