@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://btrqc1ugpa50w"]
+[gd_scene load_steps=8 format=3 uid="uid://btrqc1ugpa50w"]
 
 [ext_resource type="PackedScene" uid="uid://byrgpfbmyhhc0" path="res://Basics/HandHandler.tscn" id="1_xb24h"]
 [ext_resource type="Texture2D" uid="uid://bpb0gfs4y3apm" path="res://assets/fondo.jpg" id="2_jon3f"]
@@ -6,17 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://co3q06gnyqi4e" path="res://Basics/Scenery/Ball.tscn" id="4_4cgce"]
 [ext_resource type="PackedScene" uid="uid://manpniyvu1we" path="res://Basics/Scenery/Spike.tscn" id="5_twi1l"]
 [ext_resource type="PackedScene" uid="uid://bymvqs6o1wht8" path="res://Basics/Scenery/IBlock.tscn" id="6_q5lgr"]
-
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_vybwq"]
-normal = Vector2(0, 1)
-distance = 7.0
-
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_4cgce"]
-distance = 6.9999995
-
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_twi1l"]
-normal = Vector2(0, 1)
-distance = 6.0
+[ext_resource type="PackedScene" uid="uid://cq4xf3fvribpn" path="res://Basics/Borders.tscn" id="7_4cgce"]
 
 [node name="Level3" type="Control"]
 layout_mode = 3
@@ -56,22 +46,4 @@ scale = Vector2(6, 1)
 [node name="Spike3" parent="." instance=ExtResource("5_twi1l")]
 position = Vector2(539, 418)
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(1161, 325)
-rotation = 1.5707964
-shape = SubResource("WorldBoundaryShape2D_vybwq")
-
-[node name="StaticBody2D2" type="StaticBody2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
-position = Vector2(-9, 319)
-rotation = 1.5707964
-shape = SubResource("WorldBoundaryShape2D_4cgce")
-
-[node name="StaticBody2D3" type="StaticBody2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
-position = Vector2(574, -7)
-shape = SubResource("WorldBoundaryShape2D_twi1l")
+[node name="Node2D" parent="." instance=ExtResource("7_4cgce")]
