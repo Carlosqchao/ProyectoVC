@@ -62,6 +62,6 @@
 - /assets                     — sprites, sonidos, modelos
 - README.md
 
-Créditos y contacto
+### Créditos y contacto
 - Autor/Repositorio: Carlosqchao y Juanelboi / ProyectoVC
 - Para dudas, issues o propuestas de mejora, abre un issue en el repositorio.
