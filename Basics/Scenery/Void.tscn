@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://blw6fetirvd1x"]
+
+[ext_resource type="Script" uid="uid://d1o0wu6e2egu7" path="res://Basics/Scripts/Spike.gd" id="1_ficru"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_amch5"]
+size = Vector2(3168, 286.5)
+
+[node name="Void" type="Area2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(504, 791.25)
+shape = SubResource("RectangleShape2D_amch5")
+script = ExtResource("1_ficru")
