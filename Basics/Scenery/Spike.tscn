@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://manpniyvu1we"]
 
-[ext_resource type="Script" uid="uid://d1o0wu6e2egu7" path="res://Basics/Spike.gd" id="1_o6jug"]
-[ext_resource type="Texture2D" uid="uid://cr8mwjgboohyc" path="res://assets/pincho.png" id="1_xee3q"]
+[ext_resource type="Script" uid="uid://d1o0wu6e2egu7" path="res://Basics/Scripts/Spike.gd" id="1_hexow"]
+[ext_resource type="Texture2D" uid="uid://cr8mwjgboohyc" path="res://assets/pincho.png" id="2_ktr2h"]
 
 [node name="Node2D" type="Node2D"]
 
@@ -9,10 +9,10 @@
 position = Vector2(38, -34.199997)
 scale = Vector2(0.5, 0.188)
 collision_mask = 4
-script = ExtResource("1_o6jug")
+script = ExtResource("1_hexow")
 
 [node name="Sprite2D" type="Sprite2D" parent="Area2D"]
-texture = ExtResource("1_xee3q")
+texture = ExtResource("2_ktr2h")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
 position = Vector2(-254, 559.57446)

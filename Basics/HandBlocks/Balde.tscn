@@ -3,19 +3,16 @@
 [ext_resource type="Script" uid="uid://pmfydhm6f547" path="res://Basics/HandBlocks/character_body_2d.gd" id="1_s4gr2"]
 [ext_resource type="Texture2D" uid="uid://c3voylc6urp1t" path="res://assets/Balde.png" id="2_s4gr2"]
 
-[node name="Node2D" type="Node2D"]
-
-[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+[node name="Balde" type="CharacterBody2D"]
+scale = Vector2(0.25, 0.25)
 collision_layer = 2
 collision_mask = 4
 script = ExtResource("1_s4gr2")
 
-[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
-position = Vector2(366.00003, 200.00002)
-rotation = 3.1415927
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = -3.1415925
 scale = Vector2(1.8, 1.8)
 texture = ExtResource("2_s4gr2")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="CharacterBody2D"]
-position = Vector2(22, 492)
-polygon = PackedVector2Array(1, 2, 99, 5, 170, -499, 518, -499, 589, 5, 689, 3, 690, -55, 674, -55, 597, -585, 89, -585, 16, -54, 1, -54)
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-348, 292, -240, 296, -176, -204, 176, -204, 244, 296, 344, 292, 348, 236, 328, 236, 260, -288, -252, -288, -324, 236, -344, 236)

@@ -11,9 +11,13 @@ config_version=5
 [application]
 
 config/name="MazeBall"
-run/main_scene="uid://dxbxcvu5bpjc5"
+run/main_scene="uid://xbc1u4127m72"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://assets/icon.svg"
+
+[global_group]
+
+Rigid=""
 
 [layer_names]
 

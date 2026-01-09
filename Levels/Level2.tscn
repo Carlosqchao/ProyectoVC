@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://clh5krtb7bdj"]
+[gd_scene load_steps=9 format=3 uid="uid://clh5krtb7bdj"]
 
 [ext_resource type="Texture2D" uid="uid://bpb0gfs4y3apm" path="res://assets/fondo.jpg" id="1_lfj2m"]
-[ext_resource type="PackedScene" uid="uid://cqtng0pi7ov0d" path="res://Basics/Finish.tscn" id="2_506po"]
-[ext_resource type="PackedScene" uid="uid://co3q06gnyqi4e" path="res://Basics/Ball.tscn" id="3_v115i"]
-[ext_resource type="PackedScene" uid="uid://bymvqs6o1wht8" path="res://Basics/IBlock.tscn" id="4_jglcl"]
+[ext_resource type="PackedScene" uid="uid://cqtng0pi7ov0d" path="res://Basics/Scenery/Finish.tscn" id="2_506po"]
+[ext_resource type="PackedScene" uid="uid://co3q06gnyqi4e" path="res://Basics/Scenery/Ball.tscn" id="3_v115i"]
+[ext_resource type="PackedScene" uid="uid://bymvqs6o1wht8" path="res://Basics/Scenery/IBlock.tscn" id="4_jglcl"]
+[ext_resource type="PackedScene" uid="uid://byrgpfbmyhhc0" path="res://Basics/HandHandler.tscn" id="5_v115i"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_506po"]
 normal = Vector2(0, 1)
@@ -67,3 +68,5 @@ shape = SubResource("WorldBoundaryShape2D_v115i")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
 position = Vector2(574, -7)
 shape = SubResource("WorldBoundaryShape2D_jglcl")
+
+[node name="Node" parent="." instance=ExtResource("5_v115i")]

@@ -1,0 +1,36 @@
+[gd_scene load_steps=4 format=3 uid="uid://rln3aem6bo1s"]
+
+[ext_resource type="Script" uid="uid://pmfydhm6f547" path="res://Basics/HandBlocks/character_body_2d.gd" id="1_inaml"]
+[ext_resource type="Texture2D" uid="uid://cvicsex8pssnn" path="res://assets/Fuelle.png" id="1_qkqes"]
+[ext_resource type="Script" uid="uid://b3620jsatncq" path="res://Basics/HandBlocks/aire.gd" id="3_hofwp"]
+
+[node name="Fuelle" type="CharacterBody2D"]
+position = Vector2(15, -70)
+rotation = 3.1415927
+scale = Vector2(0.5, 0.5)
+collision_layer = 2
+collision_mask = 4
+script = ExtResource("1_inaml")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 1.5707964
+texture = ExtResource("1_qkqes")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+rotation = 1.5707964
+polygon = PackedVector2Array(188, -8.000009, 110, -26.000006, -178.00002, -189.99998, -177.99998, 192.00002, 110, 25.999994, 188, 5.999992)
+
+[node name="Area2D" type="Area2D" parent="."]
+rotation = 1.5707964
+collision_layer = 2
+collision_mask = 4
+script = ExtResource("3_hofwp")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+position = Vector2(182, 9.999977)
+polygon = PackedVector2Array(4, -1.000001, 1073, 401.99994, 1072, -469.00006, 4, -20)
+
+[node name="PushDir" type="Marker2D" parent="."]
+position = Vector2(14.000086, 992)
+rotation = 1.5707964
+gizmo_extents = 55.5

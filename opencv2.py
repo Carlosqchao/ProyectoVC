@@ -49,6 +49,7 @@ def normalize_angle(angle: float) -> float:
         angle += 360
     return angle
 
+
 def smooth_angle_circular(new_angle, old_angle, alpha):
     """Suaviza ángulos considerando discontinuidad circular."""
     new_angle = normalize_angle(new_angle)
@@ -63,59 +64,40 @@ def smooth_angle_circular(new_angle, old_angle, alpha):
     return normalize_angle(old_angle + alpha * diff)
 
 # -------------------------------------------------------------------
-# GESTOS (adaptado para HandLandmarkerResult: lm es lista de 21 landmarks)
+# FUNCIONES DE GESTOS 2D (PORTADAS DEL PRIMER CÓDIGO)
 # -------------------------------------------------------------------
-def get_palm_normal(lm):
-    p0 = np.array([lm[0].x, lm[0].y, lm[0].z])
-    p5 = np.array([lm[5].x, lm[5].y, lm[5].z])
-    p17 = np.array([lm[17].x, lm[17].y, lm[17].z])
+def get_finger_states_2d_from_lm(lm, handedness: str):
+    """
+    Versión adaptada de get_finger_states_2d del primer script.
+    'lm' es la lista de 21 landmarks (HandLandmarkerResult).
+    """
+    # En imagen de webcam flippeada, el eje Y crece hacia abajo.
+    # Dedo extendido: tip más arriba (y menor) que pip y mcp.
+    def is_extended_y(tip_idx, pip_idx, mcp_idx):
+        tip_y = lm[tip_idx].y
+        pip_y = lm[pip_idx].y
+        mcp_y = lm[mcp_idx].y
+        return tip_y < pip_y and tip_y < mcp_y
 
-    v1 = p5 - p0
-    v2 = p17 - p0
-    normal = np.cross(v1, v2)
+    # Pulgar: tratamos derecha/izquierda distinto en X.
+    thumb_tip = lm[4]
+    thumb_ip = lm[3]
+    thumb_mcp = lm[2]
 
-    norm = np.linalg.norm(normal)
-    if norm > 0:
-        normal /= norm
+    if handedness == "Right":
+        thumb_extended = thumb_tip.x < thumb_ip.x < thumb_mcp.x
+    else:  # "Left"
+        thumb_extended = thumb_tip.x > thumb_ip.x > thumb_mcp.x
 
-    return normal
-
-def finger_is_extended_3d(lm, tip_idx, pip_idx, mcp_idx, palm_normal):
-    tip = np.array([lm[tip_idx].x, lm[tip_idx].y, lm[tip_idx].z])
-    pip = np.array([lm[pip_idx].x, lm[pip_idx].y, lm[pip_idx].z])
-    mcp = np.array([lm[mcp_idx].x, lm[mcp_idx].y, lm[mcp_idx].z])
-
-    tip_proj = np.dot(tip - mcp, palm_normal)
-    pip_proj = np.dot(pip - mcp, palm_normal)
-
-    return tip_proj > pip_proj
-
-def thumb_is_extended_3d(lm, palm_normal, handedness: str):
-    thumb_tip = np.array([lm[4].x, lm[4].y, lm[4].z])
-    thumb_mcp = np.array([lm[2].x, lm[2].y, lm[2].z])
-    wrist = np.array([lm[0].x, lm[0].y, lm[0].z])
-    index_mcp = np.array([lm[5].x, lm[5].y, lm[5].z])
-
-    thumb_vec = thumb_tip - thumb_mcp
-    palm_vec = index_mcp - wrist
-
-    dot = np.dot(thumb_vec, palm_vec)
-    norms = np.linalg.norm(thumb_vec) * np.linalg.norm(palm_vec)
-    if norms == 0:
-        return False
-
-    angle = math.degrees(math.acos(np.clip(dot / norms, -1.0, 1.0)))
-    return angle > 40
-
-def get_finger_states_3d(lm, handedness):
-    palm_normal = get_palm_normal(lm)
-    return {
-        "thumb": thumb_is_extended_3d(lm, palm_normal, handedness),
-        "index": finger_is_extended_3d(lm, 8, 6, 5, palm_normal),
-        "middle": finger_is_extended_3d(lm, 12, 10, 9, palm_normal),
-        "ring": finger_is_extended_3d(lm, 16, 14, 13, palm_normal),
-        "pinky": finger_is_extended_3d(lm, 20, 18, 17, palm_normal),
+    finger_states = {
+        "thumb": thumb_extended,
+        "index": is_extended_y(8, 6, 5),
+        "middle": is_extended_y(12, 10, 9),
+        "ring": is_extended_y(16, 14, 13),
+        "pinky": is_extended_y(20, 18, 17),
     }
+    return finger_states
+
 
 def angle_3pts(a, b, c):
     v1 = np.array([a.x - b.x, a.y - b.y])
@@ -127,47 +109,50 @@ def angle_3pts(a, b, c):
     cos = np.clip(dot / norm, -1.0, 1.0)
     return math.degrees(math.acos(cos))
 
-def finger_is_straight(lm, joints, tol_deg=30.0):
+
+def finger_is_curved(lm, joints, min_bend_deg=40.0, max_bend_deg=120.0):
+    """
+    'joints' aquí se espera como [mcp, pip, tip] igual que en tu primer código.
+    """
     a = lm[joints[0]]
     b = lm[joints[1]]
     c = lm[joints[2]]
     ang = angle_3pts(a, b, c)
-    return ang > (180.0 - tol_deg)
+    return min_bend_deg <= ang <= max_bend_deg
 
-def classify_hand_shape(lm, handedness):
-    f = get_finger_states_3d(lm, handedness)
-    index_joints = [5, 6, 7, 8]
 
-    # index
-    if f["index"] and not f["middle"] and not f["ring"] and not f["pinky"]:
-        if not f["thumb"]:
-            return "index", False
+def classify_hand_shape_2d(lm, handedness: str):
+    """
+    Port de classify_hand_shape del primer script, adaptado a:
+    - lm: lista de landmarks
+    - devuelve (shape, inverted)
+    """
+    f = get_finger_states_2d_from_lm(lm, handedness)
+
+    index_joints = [5, 6, 8]
+    middle_joints = [9, 10, 12]
+
+    # --- índice: solo índice extendido ---
+    extended = {
+        "thumb": f["thumb"],
+        "index": f["index"],
+        "middle": f["middle"],
+        "ring": f["ring"],
+        "pinky": f["pinky"],
+    }
+    num_extended = sum(1 for v in extended.values() if v)
+    if num_extended == 1 and extended["index"]:
+        return "index", False
+
+    # --- C: índice y medio curvados, anular y meñique no extendidos ---
+    index_curved = finger_is_curved(lm, index_joints, 40.0, 120.0)
+    middle_curved = finger_is_curved(lm, middle_joints, 40.0, 120.0)
+    if index_curved and middle_curved and not f["ring"] and not f["pinky"]:
+        return "C", False
 
     # rock
     if f["index"] and f["pinky"] and not f["middle"] and not f["ring"]:
         return "rock", False
-
-    # L con invertida
-    if f["index"] and not f["ring"] and not f["pinky"]:
-        index_straight = finger_is_straight(lm, index_joints, tol_deg=45.0)
-        thumb_ext = f["thumb"]
-
-        if index_straight and thumb_ext:
-            base = lm[5]
-            tip_index = lm[8]
-            tip_thumb = lm[4]
-
-            v_index = np.array([tip_index.x - base.x, tip_index.y - base.y])
-            v_thumb = np.array([tip_thumb.x - base.x, tip_thumb.y - base.y])
-
-            dot = np.dot(v_index, v_thumb)
-            norm = np.linalg.norm(v_index) * np.linalg.norm(v_thumb)
-            if norm > 0:
-                cos = np.clip(dot / norm, -1.0, 1.0)
-                ang = math.degrees(math.acos(cos))
-                if 30.0 <= ang <= 150.0:
-                    inverted = tip_thumb.y > tip_index.y
-                    return "L", inverted
 
     # peace
     if f["index"] and f["middle"] and not f["ring"] and not f["pinky"]:
@@ -175,6 +160,9 @@ def classify_hand_shape(lm, handedness):
 
     return "unknown", False
 
+# -------------------------------------------------------------------
+# DIBUJO
+# -------------------------------------------------------------------
 def draw_rotated_box_for_finger(frame, lm, finger_indices, color=(255, 0, 0), thickness=2):
     pts = []
     for idx in finger_indices:
@@ -241,12 +229,15 @@ with HandLandmarker.create_from_options(options) as landmarker:
                 hand_label = handedness_list[0].category_name  # "Left" o "Right"
                 detected_hands.add(hand_label)
 
-                raw_shape, raw_inverted = classify_hand_shape(lm, hand_label)
+                # ---- NUEVO: usar la clasificación 2D portada del primer script ----
+                raw_shape, raw_inverted = classify_hand_shape_2d(lm, hand_label)
 
+                # inicialización
                 if hand_label not in last_shape:
                     last_shape[hand_label] = "index"
                     last_inverted[hand_label] = False
 
+                # mantener último gesto estable (no pisar con "unknown")
                 if raw_shape != "unknown":
                     last_shape[hand_label] = raw_shape
                     last_inverted[hand_label] = raw_inverted
@@ -254,14 +245,14 @@ with HandLandmarker.create_from_options(options) as landmarker:
                 shape = last_shape[hand_label]
                 inverted = last_inverted[hand_label]
 
-                # dedos usados para el bounding
+                # dedos usados para el bounding, incluyendo "C"
                 if shape == "index":
                     fingers_for_shape = [[5, 6, 7, 8]]
                 elif shape == "rock":
                     fingers_for_shape = [[5, 6, 7, 8], [17, 18, 19, 20]]
-                elif shape == "L":
-                    fingers_for_shape = [[1, 2, 3, 4], [5, 6, 7, 8]]
                 elif shape == "peace":
+                    fingers_for_shape = [[5, 6, 7, 8], [9, 10, 11, 12]]
+                elif shape == "C":
                     fingers_for_shape = [[5, 6, 7, 8], [9, 10, 11, 12]]
                 else:
                     fingers_for_shape = [[5, 6, 7, 8]]
@@ -271,6 +262,7 @@ with HandLandmarker.create_from_options(options) as landmarker:
                     pts = draw_rotated_box_for_finger(frame, lm, finger_indices)
                     all_pts.append(pts)
 
+                # línea extra para rock (como en ambos scripts)
                 if shape == "rock":
                     base_index = lm[5]
                     base_pinky = lm[17]

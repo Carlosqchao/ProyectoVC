@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=3 uid="uid://xdxgpstbt336"]
+
+[ext_resource type="Script" uid="uid://pmfydhm6f547" path="res://Basics/HandBlocks/character_body_2d.gd" id="1_6641w"]
+[ext_resource type="Texture2D" uid="uid://dh14s1bpm3e2q" path="res://assets/Iman.png" id="1_gkgxh"]
+[ext_resource type="Script" uid="uid://b3620jsatncq" path="res://Basics/HandBlocks/aire.gd" id="3_ovj0i"]
+
+[node name="Imán" type="CharacterBody2D"]
+scale = Vector2(0.5, 0.5)
+collision_layer = 2
+collision_mask = 4
+script = ExtResource("1_6641w")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-86, 142, -124, 58, -146, -30, -140, -74, -124, -112, -84, -152, -6, -172, 80, -154, 126, -108, 146, -48, 124, 54, 90, 138, -86, 142)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = -3.1415925
+texture = ExtResource("1_gkgxh")
+
+[node name="PushDir" type="Marker2D" parent="."]
+position = Vector2(0, -222)
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(-2, 138)
+rotation = -3.1415925
+collision_layer = 2
+collision_mask = 4
+script = ExtResource("3_ovj0i")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+position = Vector2(0, -12)
+polygon = PackedVector2Array(84, 7.9999847, 171.99994, -356.00003, -198.00006, -351.99997, -92, 12.000015)

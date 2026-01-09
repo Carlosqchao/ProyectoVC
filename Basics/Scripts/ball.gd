@@ -1,11 +1,7 @@
 extends RigidBody2D
 
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
-
+func wake_up()->void:
+	sleeping = false
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func push_with_form(dir:Vector2, power:float) -> void:	
 	apply_central_force(dir*power)

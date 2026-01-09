@@ -5,8 +5,8 @@
 [ext_resource type="Script" uid="uid://cp23bkhkwpwcf" path="res://Scripts/HandCursor.gd" id="2_b56jl"]
 [ext_resource type="PackedScene" uid="uid://cl48cocyukqt7" path="res://Basics/HandBlocks/Palo.tscn" id="5_swcnr"]
 [ext_resource type="PackedScene" uid="uid://bitrm340wg2oq" path="res://Basics/HandBlocks/Balde.tscn" id="6_22hco"]
-[ext_resource type="PackedScene" uid="uid://bymvqs6o1wht8" path="res://Basics/IBlock.tscn" id="7_2lvr1"]
-[ext_resource type="PackedScene" uid="uid://co3q06gnyqi4e" path="res://Basics/Ball.tscn" id="8_4phwr"]
+[ext_resource type="PackedScene" uid="uid://bymvqs6o1wht8" path="res://Basics/Scenery/IBlock.tscn" id="7_2lvr1"]
+[ext_resource type="PackedScene" uid="uid://co3q06gnyqi4e" path="res://Basics/Scenery/Ball.tscn" id="8_4phwr"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
