@@ -11,5 +11,5 @@ func _process(delta: float) -> void:
 	pass
 
 
-func _on_body_entered_Spikes(body):
+func _on_body_entered(body):
 		get_tree().reload_current_scene()

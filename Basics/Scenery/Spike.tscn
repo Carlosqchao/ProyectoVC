@@ -19,4 +19,4 @@ position = Vector2(-254, 559.57446)
 scale = Vector2(2, 5.319149)
 polygon = PackedVector2Array(166, -70, 127, -146, 89, -70)
 
-[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered_Spikes"]
+[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
