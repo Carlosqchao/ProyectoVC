@@ -7,8 +7,8 @@ size = Vector2(3168, 286.5)
 
 [node name="Void" type="Area2D"]
 collision_mask = 4
+script = ExtResource("1_ficru")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(504, 791.25)
 shape = SubResource("RectangleShape2D_amch5")
-script = ExtResource("1_ficru")
