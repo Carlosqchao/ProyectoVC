@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://bpb0gfs4y3apm" path="res://assets/fondo.jpg" id="1_i812h"]
 [ext_resource type="Script" uid="uid://cjxkiac1hhrqh" path="res://Scripts/hand_receiver.gd" id="1_nfj5t"]
 [ext_resource type="Script" uid="uid://cp23bkhkwpwcf" path="res://Scripts/HandCursor.gd" id="2_b56jl"]
-[ext_resource type="PackedScene" uid="uid://cl48cocyukqt7" path="res://Basics/HandBlocks/L.tscn" id="5_swcnr"]
+[ext_resource type="PackedScene" uid="uid://cl48cocyukqt7" path="res://Basics/HandBlocks/Palo.tscn" id="5_swcnr"]
 [ext_resource type="PackedScene" uid="uid://bitrm340wg2oq" path="res://Basics/HandBlocks/Balde.tscn" id="6_22hco"]
 [ext_resource type="PackedScene" uid="uid://bymvqs6o1wht8" path="res://Basics/IBlock.tscn" id="7_2lvr1"]
 [ext_resource type="PackedScene" uid="uid://co3q06gnyqi4e" path="res://Basics/Ball.tscn" id="8_4phwr"]
@@ -37,7 +37,7 @@ hand_receiver_path = NodePath("../Node")
 [node name="Balde" parent="ColorRect" instance=ExtResource("6_22hco")]
 position = Vector2(-802, -438)
 
-[node name="L" parent="ColorRect" instance=ExtResource("5_swcnr")]
+[node name="Palo" parent="ColorRect" instance=ExtResource("5_swcnr")]
 position = Vector2(-802, -438)
 
 [node name="Iblock" parent="." instance=ExtResource("7_2lvr1")]

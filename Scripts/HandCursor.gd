@@ -1,14 +1,14 @@
 extends ColorRect
 
 @export var hand_receiver_path: NodePath
-@export var hand_label: String = "Left"
+@export var hand_label: String = "Right"
 @export var min_move_distance: float = 5.0  # píxeles
 
 var hand_receiver: Node
 var last_global_pos: Vector2
 
 @onready var balde_scene: Node2D = $Balde
-@onready var l_scene: Node2D = $L
+@onready var palo_scene: Node2D = $Palo
 
 func _ready() -> void:
 	rotation_degrees = 0.0
@@ -21,9 +21,9 @@ func _ready() -> void:
 		print("HandShapeSprite: hand_receiver_path no asignado")
 
 	balde_scene.visible = false
-	l_scene.visible = false
+	palo_scene.visible = false
 	balde_scene.rotation_degrees = 0.0
-	l_scene.rotation_degrees = 0.0
+	palo_scene.rotation_degrees = 0.0
 
 	last_global_pos = global_position
 
@@ -43,7 +43,7 @@ func _process(delta: float) -> void:
 	var found := false
 
 	balde_scene.visible = false
-	l_scene.visible = false
+	palo_scene.visible = false
 
 	for hand in hands:
 		if str(hand.get("label", "")) != hand_label:
@@ -83,8 +83,8 @@ func _process(delta: float) -> void:
 		match shape_name:
 			"rock":
 				_update_shape_scene(balde_scene, len_x, len_y, angle_deg, delta, true)
-			"L":
-				_update_shape_scene_L(l_scene, len_x, len_y, angle_deg, inverted, delta, true)
+			"index":
+				_update_shape_scene_L(palo_scene, len_x, len_y, angle_deg, inverted, delta, true)
 			_:
 				pass
 
