@@ -7,6 +7,11 @@
 - Niveles tipo puzzle y plataformas con física de bola.
 - Integración de seguimiento de manos (MediaPipe) para interacción alternativa basada en gestos.
 - Código de juego en GDScript (Godot) y scripts en Python para el procesamiento de la webcam y MediaPipe.
+- El sistema **detecta** varias poses de la mano en tiempo real usando MediaPipe y OpenCV: índice extendido (pointer), gesto de “rock” con índice y meñique levantados, gesto de “peace” o “victoria” con índice y medio, y una forma de “C” en la que índice y medio están curvados mientras anular y meñique permanecen recogidos. Para cada mano (izquierda o derecha), se analiza qué dedos están extendidos o doblados y se clasifica la mano en una de estas categorías, asociando también si la mano está invertida o no.
+
+- Además de la clasificación de la pose, se dibujan cajas rotadas alrededor de los dedos relevantes y, para el gesto “rock”, se traza una línea entre la base del índice y la del meñique para remarcar la silueta. El sistema calcula y suaviza la posición, tamaño y ángulo de cada mano, generando datos estables (coordenadas, longitud, orientación y tipo de gesto) que ya se están utilizando como entrada gestual en Godot dentro de la aplicación interactiva.
+
+## Gif gestos Mediapipe
 
 ![Gif1](https://github.com/user-attachments/assets/923602bf-c09e-4e94-9c2b-90c8948cf597)
 
