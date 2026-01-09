@@ -15,4 +15,6 @@ scale = Vector2(1.8, 1.8)
 texture = ExtResource("2_s4gr2")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+light_mask = 2
+visibility_layer = 4
 polygon = PackedVector2Array(-348, 292, -240, 296, -176, -204, 176, -204, 244, 296, 344, 292, 348, 236, 328, 236, 260, -288, -252, -288, -324, 236, -344, 236)

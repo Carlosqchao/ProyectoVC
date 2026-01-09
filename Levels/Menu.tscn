@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://xbc1u4127m72"]
+[gd_scene load_steps=6 format=3 uid="uid://xbc1u4127m72"]
 
 [ext_resource type="Script" uid="uid://c7wuvjf0jpwj1" path="res://Scripts/menu.gd" id="1_5yleq"]
 [ext_resource type="Texture2D" uid="uid://bpb0gfs4y3apm" path="res://assets/fondo.jpg" id="1_uubjt"]
+[ext_resource type="AudioStream" uid="uid://bk3knof6qfu5a" path="res://assets/661248__magmadiverrr__video-game-menu-music.mp3" id="3_8t5nu"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5yleq"]
 bg_color = Color(0, 0.6306667, 0.86, 1)
@@ -54,6 +55,11 @@ theme_override_font_sizes/font_size = 30
 theme_override_styles/normal = SubResource("StyleBoxFlat_ylpcl")
 text = "Exit
 "
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_8t5nu")
+volume_db = -20.0
+autoplay = true
 
 [connection signal="pressed" from="VBoxContainer/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="VBoxContainer/Exit" to="." method="_on_exit_pressed"]

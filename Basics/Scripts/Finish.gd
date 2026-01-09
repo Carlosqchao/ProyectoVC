@@ -4,4 +4,5 @@ extends Area2D
 
 
 func _on_body_entered(body: Node2D) -> void:
-	get_tree().change_scene_to_file("res://Levels/"+Level+".tscn")
+	if body.is_in_group("Rigid"):
+		get_tree().change_scene_to_file("res://Levels/"+Level+".tscn")

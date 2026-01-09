@@ -52,6 +52,10 @@ func _process(delta: float) -> void:
 	palo_scene.visible = false
 	fuelle_scene.visible = false
 	iman_scene.visible = false
+	balde_scene.external_velocity = Vector2.ZERO
+	palo_scene.external_velocity = Vector2.ZERO
+	fuelle_scene.external_velocity = Vector2.ZERO
+	iman_scene.external_velocity = Vector2.ZERO
 
 	for hand in hands:
 		if str(hand.get("label", "")) != hand_label:
@@ -87,12 +91,16 @@ func _process(delta: float) -> void:
 
 		match shape_name:
 			"rock":
+				Globals.fuerzas=false
 				_update_shape_scene(balde_scene, len_x, len_y, angle_deg, delta, true)
 			"index":
+				Globals.fuerzas=false
 				_update_shape_scene(palo_scene, len_x, len_y, angle_deg, delta, true)
 			"peace":
+				Globals.fuerzas=true
 				_update_shape_scene(fuelle_scene, len_x, len_y, angle_deg, delta, true)
 			"C":
+				Globals.fuerzas=true
 				_update_shape_scene(iman_scene, len_x, len_y, angle_deg, delta, true)
 			_:
 				pass
@@ -101,14 +109,16 @@ func _process(delta: float) -> void:
 		break
 
 	visible = found
-func _update_shape_scene(body: CharacterBody2D, len_x: float, len_y: float, angle_deg: float, delta: float,	hand_detected: bool) -> void:
+	
+func _update_shape_scene(body: CharacterBody2D, len_x: float, len_y: float, angle_deg: float, delta: float, hand_detected: bool) -> void:
 	body.rotation_degrees = angle_deg - 90.0
 	body.visible = hand_detected
 
 	if hand_detected and delta > 0.0:
-		var desired_pos: Vector2 = global_position  # punto que sigue (ColorRect / mano)
+		var desired_pos: Vector2 = global_position
 		var current_pos: Vector2 = body.global_position
 		var displacement: Vector2 = desired_pos - current_pos
-
-		# Ajusta el factor para más o menos suavizado
 		body.external_velocity = (displacement / delta) / 5.0
+	else:
+		# Si esta forma no está activa, que no arrastre nada
+		body.external_velocity = Vector2.ZERO

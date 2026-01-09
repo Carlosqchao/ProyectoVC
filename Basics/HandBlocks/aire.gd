@@ -1,8 +1,9 @@
 extends Area2D
 
-@export var strength: float = 1000.0  # Intensidad del aire
+@export var strength: float = 500.0  # Intensidad del aire
 
 @onready var push_dir: Node2D = $"../PushDir"
+
 
 func _ready() -> void:
 	connect("body_entered", _on_body_entered)
@@ -16,15 +17,18 @@ var bodies_in_wind: Array[RigidBody2D] = []
 
 func _on_body_entered(body: Node) -> void:
 	if body is RigidBody2D:
+		if body.is_in_group("Leaf"):
+			body.collision_layer = 4
 		bodies_in_wind.append(body)
 
 func _on_body_exited(body: Node) -> void:
 	if body is RigidBody2D:
 		bodies_in_wind.erase(body)
+		body.linear_velocity = Vector2.ZERO
 		body.wake_up()
 
 func _physics_process(delta: float) -> void:
-	if bodies_in_wind.is_empty():
+	if bodies_in_wind.is_empty() or !Globals.fuerzas:
 		return
 	var dir := _get_push_vector()
 	for body in bodies_in_wind:

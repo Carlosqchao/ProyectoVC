@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://csu1b4h66geq8"]
+[gd_scene load_steps=6 format=3 uid="uid://csu1b4h66geq8"]
 
 [ext_resource type="Script" uid="uid://b3qi0vyjt6xa4" path="res://Scripts/level_selector.gd" id="1_gmphf"]
 [ext_resource type="Texture2D" uid="uid://bpb0gfs4y3apm" path="res://assets/fondo.jpg" id="1_jxhmt"]
+[ext_resource type="AudioStream" uid="uid://bk3knof6qfu5a" path="res://assets/661248__magmadiverrr__video-game-menu-music.mp3" id="3_wwuxf"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gmphf"]
 bg_color = Color(0, 0.6306667, 0.86, 1)
@@ -75,6 +76,11 @@ theme_override_font_sizes/font_size = 30
 theme_override_styles/normal = SubResource("StyleBoxFlat_gmphf")
 text = "Level 5
 "
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_wwuxf")
+volume_db = -20.0
+autoplay = true
 
 [connection signal="pressed" from="VBoxContainer/Level 1" to="." method="_on_level_1_pressed"]
 [connection signal="pressed" from="VBoxContainer/Level 2" to="." method="_on_level_2_pressed"]

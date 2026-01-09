@@ -1,15 +1,19 @@
-[gd_scene load_steps=4 format=3 uid="uid://co3q06gnyqi4e"]
+[gd_scene load_steps=5 format=3 uid="uid://co3q06gnyqi4e"]
 
 [ext_resource type="Script" uid="uid://jtfh4i3pjcj5" path="res://Basics/Scripts/ball.gd" id="1_4dwcc"]
 [ext_resource type="Texture2D" uid="uid://cofyfptd7y8ai" path="res://assets/Ball.png" id="1_4hlg7"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_r8q1l"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4dwcc"]
 radius = 20.0
 
 [node name="Node2D" type="RigidBody2D" groups=["Rigid"]]
 collision_layer = 4
-collision_mask = 3
-gravity_scale = 0.8
+collision_mask = 15
+mass = 0.5
+physics_material_override = SubResource("PhysicsMaterial_r8q1l")
+linear_damp = 2.0
 script = ExtResource("1_4dwcc")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

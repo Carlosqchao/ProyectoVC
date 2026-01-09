@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://0j7rqehox7kh"]
+[gd_scene load_steps=7 format=3 uid="uid://0j7rqehox7kh"]
 
 [ext_resource type="PackedScene" uid="uid://dsmpk4uyqhoa3" path="res://Basics/Scenery/BasicLevel.tscn" id="1_0sogr"]
 [ext_resource type="PackedScene" uid="uid://cqtng0pi7ov0d" path="res://Basics/Scenery/Finish.tscn" id="3_vgbee"]
 [ext_resource type="PackedScene" uid="uid://co3q06gnyqi4e" path="res://Basics/Scenery/Ball.tscn" id="4_lfbxl"]
 [ext_resource type="PackedScene" uid="uid://cc1hjpsr4pym0" path="res://Basics/Scenery/Leaf.tscn" id="5_5brs8"]
 [ext_resource type="PackedScene" uid="uid://bymvqs6o1wht8" path="res://Basics/Scenery/IBlock.tscn" id="5_v72e1"]
+[ext_resource type="AudioStream" uid="uid://b1je72h4cf5b4" path="res://assets/647908__sonically_sound__short-loop-made-in-a-few-minutes-with-qws-and-goldwave.mp3" id="6_5brs8"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -18,6 +19,7 @@ grow_vertical = 2
 layout_mode = 1
 
 [node name="Ball" parent="." instance=ExtResource("4_lfbxl")]
+position = Vector2(34, 338)
 
 [node name="Node2D2" parent="." instance=ExtResource("5_v72e1")]
 position = Vector2(78, 394)
@@ -52,3 +54,8 @@ position = Vector2(995, 279)
 
 [node name="Leaf9" parent="." instance=ExtResource("5_5brs8")]
 position = Vector2(957, 330)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_5brs8")
+volume_db = -10.0
+autoplay = true
