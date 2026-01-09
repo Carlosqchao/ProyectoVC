@@ -6,6 +6,7 @@
 size = Vector2(3168, 286.5)
 
 [node name="Void" type="Area2D"]
+collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(504, 791.25)
