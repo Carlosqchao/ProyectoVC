@@ -1,21 +1,12 @@
-[gd_scene load_steps=9 format=3 uid="uid://clh5krtb7bdj"]
+[gd_scene load_steps=8 format=3 uid="uid://clh5krtb7bdj"]
 
 [ext_resource type="Texture2D" uid="uid://bpb0gfs4y3apm" path="res://assets/fondo.jpg" id="1_lfj2m"]
 [ext_resource type="PackedScene" uid="uid://cqtng0pi7ov0d" path="res://Basics/Scenery/Finish.tscn" id="2_506po"]
 [ext_resource type="PackedScene" uid="uid://co3q06gnyqi4e" path="res://Basics/Scenery/Ball.tscn" id="3_v115i"]
 [ext_resource type="PackedScene" uid="uid://bymvqs6o1wht8" path="res://Basics/Scenery/IBlock.tscn" id="4_jglcl"]
 [ext_resource type="PackedScene" uid="uid://byrgpfbmyhhc0" path="res://Basics/HandHandler.tscn" id="5_v115i"]
-
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_506po"]
-normal = Vector2(0, 1)
-distance = 7.0
-
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_v115i"]
-distance = 6.9999995
-
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_jglcl"]
-normal = Vector2(0, 1)
-distance = 6.0
+[ext_resource type="PackedScene" uid="uid://cq4xf3fvribpn" path="res://Basics/Borders.tscn" id="6_w0h0a"]
+[ext_resource type="PackedScene" uid="uid://blw6fetirvd1x" path="res://Basics/Scenery/Void.tscn" id="7_m3ha0"]
 
 [node name="Control2" type="Control"]
 layout_mode = 3
@@ -49,24 +40,8 @@ position = Vector2(70, 302)
 [node name="Finish" parent="." instance=ExtResource("2_506po")]
 position = Vector2(1065, 246)
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(1161, 325)
-rotation = 1.5707964
-shape = SubResource("WorldBoundaryShape2D_506po")
-
-[node name="StaticBody2D2" type="StaticBody2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
-position = Vector2(-9, 319)
-rotation = 1.5707964
-shape = SubResource("WorldBoundaryShape2D_v115i")
-
-[node name="StaticBody2D3" type="StaticBody2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
-position = Vector2(574, -7)
-shape = SubResource("WorldBoundaryShape2D_jglcl")
-
 [node name="Node" parent="." instance=ExtResource("5_v115i")]
+
+[node name="Borders" parent="." instance=ExtResource("6_w0h0a")]
+
+[node name="Void" parent="." instance=ExtResource("7_m3ha0")]
