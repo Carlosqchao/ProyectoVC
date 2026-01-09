@@ -28,6 +28,7 @@ texture = ExtResource("1_afs6g")
 
 [node name="Finish" parent="." instance=ExtResource("3_k15ql")]
 position = Vector2(1069, 267)
+Level = "Level2"
 
 [node name="Ball" parent="." instance=ExtResource("2_k15ql")]
 position = Vector2(212, 321)

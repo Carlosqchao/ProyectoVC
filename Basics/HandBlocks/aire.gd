@@ -1,6 +1,6 @@
 extends Area2D
 
-@export var strength: float = 5000.0  # Intensidad del aire
+@export var strength: float = 1000.0  # Intensidad del aire
 
 @onready var push_dir: Node2D = $"../PushDir"
 

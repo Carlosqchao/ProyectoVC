@@ -29,6 +29,7 @@ texture = ExtResource("2_jon3f")
 
 [node name="Meta" parent="." instance=ExtResource("3_vybwq")]
 position = Vector2(1074, 343)
+Level = "Level4"
 
 [node name="Ball" parent="." instance=ExtResource("4_4cgce")]
 position = Vector2(52, 397)

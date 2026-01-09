@@ -11,7 +11,7 @@ collision_mask = 4
 script = ExtResource("1_6641w")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-polygon = PackedVector2Array(-86, 142, -124, 58, -146, -30, -140, -74, -124, -112, -84, -152, -6, -172, 80, -154, 126, -108, 146, -48, 124, 54, 90, 138, -86, 142)
+polygon = PackedVector2Array(-84, 138, -136, 24, -144, -42, -138, -86, -120, -120, -78, -154, 0, -172, 80, -154, 126, -108, 146, -48, 124, 54, 88, 138, 0, 124)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 rotation = -3.1415925
@@ -29,4 +29,4 @@ script = ExtResource("3_ovj0i")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
 position = Vector2(0, -12)
-polygon = PackedVector2Array(84, 7.9999847, 171.99994, -356.00003, -198.00006, -351.99997, -92, 12.000015)
+polygon = PackedVector2Array(82, 11.999985, 171.99994, -356.00003, -198.00006, -351.99997, -90, 12.000015)

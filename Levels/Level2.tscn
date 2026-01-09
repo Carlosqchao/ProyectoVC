@@ -39,6 +39,7 @@ position = Vector2(70, 302)
 
 [node name="Finish" parent="." instance=ExtResource("2_506po")]
 position = Vector2(1065, 246)
+Level = "Level3"
 
 [node name="Node" parent="." instance=ExtResource("5_v115i")]
 

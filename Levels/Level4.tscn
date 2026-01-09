@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://d2i7iyjp4niwv"]
+[gd_scene load_steps=9 format=3 uid="uid://dug2y2y03rhkt"]
 
 [ext_resource type="PackedScene" uid="uid://byrgpfbmyhhc0" path="res://Basics/HandHandler.tscn" id="1_5brs8"]
 [ext_resource type="Texture2D" uid="uid://bpb0gfs4y3apm" path="res://assets/fondo.jpg" id="2_qgpl5"]
