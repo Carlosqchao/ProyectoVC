@@ -8,6 +8,9 @@
 - Integración de seguimiento de manos (MediaPipe) para interacción alternativa basada en gestos.
 - Código de juego en GDScript (Godot) y scripts en Python para el procesamiento de la webcam y MediaPipe.
 
+![Gif1](https://github.com/user-attachments/assets/923602bf-c09e-4e94-9c2b-90c8948cf597)
+
+
 ### Requisitos
 - Godot (revisa project.godot para la versión recomendada; puede ser Godot 3.x o 4.x según la configuración del proyecto).
 - Python 3.8+ para la integración con MediaPipe.
