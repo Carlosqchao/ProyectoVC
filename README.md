@@ -71,6 +71,10 @@
 ## Video Demo
 [![Video MazeBall](https://img.youtube.com/vi/VrBp10FoIUI/maxresdefault.jpg)](https://youtu.be/VrBp10FoIUI)
 
+## Video Promocional
+
+[![Video MazeBall](https://img.youtube.com/vi/jhq7hbmionM/maxresdefault.jpg)](https://youtu.be/jhq7hbmionM)
+
 ### Créditos y contacto
 - Autor/Repositorio: Carlosqchao y Juanelboi / ProyectoVC
 - Para dudas, issues o propuestas de mejora, abre un issue en el repositorio.
