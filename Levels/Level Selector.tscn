@@ -1,14 +1,17 @@
-[gd_scene load_steps=6 format=3 uid="uid://csu1b4h66geq8"]
+[gd_scene load_steps=7 format=3 uid="uid://csu1b4h66geq8"]
 
 [ext_resource type="Script" uid="uid://b3qi0vyjt6xa4" path="res://Scripts/level_selector.gd" id="1_gmphf"]
-[ext_resource type="Texture2D" uid="uid://bpb0gfs4y3apm" path="res://assets/fondo.jpg" id="1_jxhmt"]
-[ext_resource type="AudioStream" uid="uid://bk3knof6qfu5a" path="res://assets/661248__magmadiverrr__video-game-menu-music.mp3" id="3_wwuxf"]
+[ext_resource type="Texture2D" uid="uid://bpb0gfs4y3apm" path="res://Assets/fondo.jpg" id="1_jxhmt"]
+[ext_resource type="AudioStream" uid="uid://bk3knof6qfu5a" path="res://Assets/661248__magmadiverrr__video-game-menu-music.mp3" id="3_wwuxf"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gmphf"]
 bg_color = Color(0, 0.6306667, 0.86, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wwuxf"]
 bg_color = Color(0, 0.6313726, 0.85882354, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_56c0w"]
+bg_color = Color(0, 0.6306667, 0.86, 1)
 
 [node name="LevelSelector" type="Control"]
 layout_mode = 3
@@ -82,8 +85,22 @@ stream = ExtResource("3_wwuxf")
 volume_db = -20.0
 autoplay = true
 
+[node name="VBoxContainer2" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 238.0
+offset_bottom = 42.0
+
+[node name="Menu" type="Button" parent="VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_56c0w")
+text = "Menu
+"
+
 [connection signal="pressed" from="VBoxContainer/Level 1" to="." method="_on_level_1_pressed"]
 [connection signal="pressed" from="VBoxContainer/Level 2" to="." method="_on_level_2_pressed"]
 [connection signal="pressed" from="VBoxContainer/Level 3" to="." method="_on_level_3_pressed"]
 [connection signal="pressed" from="VBoxContainer/Level 4" to="." method="_on_level_4_pressed"]
 [connection signal="pressed" from="VBoxContainer/Level 5" to="." method="_on_level_5_pressed"]
+[connection signal="pressed" from="VBoxContainer2/Menu" to="." method="_on_menu_pressed"]

@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://co3q06gnyqi4e" path="res://Basics/Scenery/Ball.tscn" id="4_lfbxl"]
 [ext_resource type="PackedScene" uid="uid://cc1hjpsr4pym0" path="res://Basics/Scenery/Leaf.tscn" id="5_5brs8"]
 [ext_resource type="PackedScene" uid="uid://bymvqs6o1wht8" path="res://Basics/Scenery/IBlock.tscn" id="5_v72e1"]
-[ext_resource type="AudioStream" uid="uid://b1je72h4cf5b4" path="res://assets/647908__sonically_sound__short-loop-made-in-a-few-minutes-with-qws-and-goldwave.mp3" id="6_5brs8"]
+[ext_resource type="AudioStream" uid="uid://b1je72h4cf5b4" path="res://Assets/647908__sonically_sound__short-loop-made-in-a-few-minutes-with-qws-and-goldwave.mp3" id="6_5brs8"]
 
 [node name="Control" type="Control"]
 layout_mode = 3

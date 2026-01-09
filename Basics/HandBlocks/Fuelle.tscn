@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://rln3aem6bo1s"]
 
 [ext_resource type="Script" uid="uid://pmfydhm6f547" path="res://Basics/HandBlocks/character_body_2d.gd" id="1_inaml"]
-[ext_resource type="Texture2D" uid="uid://cvicsex8pssnn" path="res://assets/Fuelle.png" id="1_qkqes"]
+[ext_resource type="Texture2D" uid="uid://cvicsex8pssnn" path="res://Assets/Fuelle.png" id="1_qkqes"]
 [ext_resource type="Script" uid="uid://b3620jsatncq" path="res://Basics/HandBlocks/aire.gd" id="3_hofwp"]
 
 [node name="Fuelle" type="CharacterBody2D"]

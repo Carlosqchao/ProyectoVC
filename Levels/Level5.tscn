@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://dug2y2y03rhkt"]
 
 [ext_resource type="PackedScene" uid="uid://byrgpfbmyhhc0" path="res://Basics/HandHandler.tscn" id="1_w1sat"]
-[ext_resource type="Texture2D" uid="uid://bpb0gfs4y3apm" path="res://assets/fondo.jpg" id="2_nijbd"]
+[ext_resource type="Texture2D" uid="uid://bpb0gfs4y3apm" path="res://Assets/fondo.jpg" id="2_nijbd"]
 [ext_resource type="PackedScene" uid="uid://cqtng0pi7ov0d" path="res://Basics/Scenery/Finish.tscn" id="3_cg4ff"]
 [ext_resource type="PackedScene" uid="uid://co3q06gnyqi4e" path="res://Basics/Scenery/Ball.tscn" id="4_rss6v"]
 [ext_resource type="PackedScene" uid="uid://bymvqs6o1wht8" path="res://Basics/Scenery/IBlock.tscn" id="5_x1euj"]
@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://blw6fetirvd1x" path="res://Basics/Scenery/Void.tscn" id="7_888os"]
 [ext_resource type="PackedScene" uid="uid://cq4xf3fvribpn" path="res://Basics/Scenery/Borders.tscn" id="8_nxrld"]
 [ext_resource type="PackedScene" uid="uid://p6nxovhhtfrx" path="res://Levels/pausa.tscn" id="9_ycmcf"]
-[ext_resource type="AudioStream" uid="uid://b1je72h4cf5b4" path="res://assets/647908__sonically_sound__short-loop-made-in-a-few-minutes-with-qws-and-goldwave.mp3" id="10_nijbd"]
+[ext_resource type="AudioStream" uid="uid://b1je72h4cf5b4" path="res://Assets/647908__sonically_sound__short-loop-made-in-a-few-minutes-with-qws-and-goldwave.mp3" id="10_nijbd"]
 
 [node name="Level4" type="Control"]
 layout_mode = 3

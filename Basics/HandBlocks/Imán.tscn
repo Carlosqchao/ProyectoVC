@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://xdxgpstbt336"]
 
 [ext_resource type="Script" uid="uid://pmfydhm6f547" path="res://Basics/HandBlocks/character_body_2d.gd" id="1_6641w"]
-[ext_resource type="Texture2D" uid="uid://dh14s1bpm3e2q" path="res://assets/Iman.png" id="1_gkgxh"]
+[ext_resource type="Texture2D" uid="uid://dh14s1bpm3e2q" path="res://Assets/Iman.png" id="1_gkgxh"]
 [ext_resource type="Script" uid="uid://b3620jsatncq" path="res://Basics/HandBlocks/aire.gd" id="3_ovj0i"]
 
 [node name="Imán" type="CharacterBody2D"]

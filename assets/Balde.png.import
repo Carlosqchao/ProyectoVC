@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c3voylc6urp1t"
-path="res://.godot/imported/Balde.png-94148bc2262314032daf15358b481702.ctex"
+path="res://.godot/imported/Balde.png-17330a0ddaa52920c8348818d8131916.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Balde.png"
-dest_files=["res://.godot/imported/Balde.png-94148bc2262314032daf15358b481702.ctex"]
+source_file="res://Assets/Balde.png"
+dest_files=["res://.godot/imported/Balde.png-17330a0ddaa52920c8348818d8131916.ctex"]
 
 [params]
 

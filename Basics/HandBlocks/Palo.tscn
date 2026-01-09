@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://cl48cocyukqt7"]
 
 [ext_resource type="Script" uid="uid://pmfydhm6f547" path="res://Basics/HandBlocks/character_body_2d.gd" id="1_3gqht"]
-[ext_resource type="Texture2D" uid="uid://bqlu2sp06kdb6" path="res://assets/Palo.png" id="2_3gqht"]
+[ext_resource type="Texture2D" uid="uid://bqlu2sp06kdb6" path="res://Assets/Palo.png" id="2_3gqht"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lewdd"]
 size = Vector2(373.5, 42)

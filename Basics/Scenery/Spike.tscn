@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://manpniyvu1we"]
 
 [ext_resource type="Script" uid="uid://d1o0wu6e2egu7" path="res://Basics/Scripts/Spike.gd" id="1_hexow"]
-[ext_resource type="Texture2D" uid="uid://cr8mwjgboohyc" path="res://assets/pincho.png" id="2_ktr2h"]
+[ext_resource type="Texture2D" uid="uid://cr8mwjgboohyc" path="res://Assets/pincho.png" id="2_ktr2h"]
 
 [node name="Node2D" type="Node2D"]
 

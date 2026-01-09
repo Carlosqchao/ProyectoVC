@@ -1,13 +1,13 @@
 [gd_scene load_steps=9 format=3 uid="uid://ye5yqvqydxqd"]
 
-[ext_resource type="Texture2D" uid="uid://bpb0gfs4y3apm" path="res://assets/fondo.jpg" id="1_afs6g"]
+[ext_resource type="Texture2D" uid="uid://bpb0gfs4y3apm" path="res://Assets/fondo.jpg" id="1_afs6g"]
 [ext_resource type="PackedScene" uid="uid://co3q06gnyqi4e" path="res://Basics/Scenery/Ball.tscn" id="2_k15ql"]
 [ext_resource type="PackedScene" uid="uid://byrgpfbmyhhc0" path="res://Basics/HandHandler.tscn" id="2_nutv8"]
 [ext_resource type="PackedScene" uid="uid://bymvqs6o1wht8" path="res://Basics/Scenery/IBlock.tscn" id="2_us5lx"]
 [ext_resource type="PackedScene" uid="uid://cqtng0pi7ov0d" path="res://Basics/Scenery/Finish.tscn" id="3_k15ql"]
 [ext_resource type="PackedScene" uid="uid://cq4xf3fvribpn" path="res://Basics/Scenery/Borders.tscn" id="6_05pb0"]
 [ext_resource type="PackedScene" uid="uid://p6nxovhhtfrx" path="res://Levels/pausa.tscn" id="7_dl8mf"]
-[ext_resource type="AudioStream" uid="uid://b1je72h4cf5b4" path="res://assets/647908__sonically_sound__short-loop-made-in-a-few-minutes-with-qws-and-goldwave.mp3" id="8_xcayt"]
+[ext_resource type="AudioStream" uid="uid://b1je72h4cf5b4" path="res://Assets/647908__sonically_sound__short-loop-made-in-a-few-minutes-with-qws-and-goldwave.mp3" id="8_xcayt"]
 
 [node name="Control2" type="Control"]
 layout_mode = 3

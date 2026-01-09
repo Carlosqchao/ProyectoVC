@@ -3,12 +3,12 @@
 importer="mp3"
 type="AudioStreamMP3"
 uid="uid://bk3knof6qfu5a"
-path="res://.godot/imported/661248__magmadiverrr__video-game-menu-music.mp3-883cfa6a46cc11ce922049b4dae74b23.mp3str"
+path="res://.godot/imported/661248__magmadiverrr__video-game-menu-music.mp3-f3e91767939cadde2f530e8cf7f0903f.mp3str"
 
 [deps]
 
-source_file="res://assets/661248__magmadiverrr__video-game-menu-music.mp3"
-dest_files=["res://.godot/imported/661248__magmadiverrr__video-game-menu-music.mp3-883cfa6a46cc11ce922049b4dae74b23.mp3str"]
+source_file="res://Assets/661248__magmadiverrr__video-game-menu-music.mp3"
+dest_files=["res://.godot/imported/661248__magmadiverrr__video-game-menu-music.mp3-f3e91767939cadde2f530e8cf7f0903f.mp3str"]
 
 [params]
 

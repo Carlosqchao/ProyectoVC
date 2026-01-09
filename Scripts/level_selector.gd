@@ -6,10 +6,6 @@ func _ready() -> void:
 		get_tree().paused = false
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
 func _on_level_1_pressed() -> void:
 	get_tree().change_scene_to_file("res://Levels/Level1.tscn")
 
@@ -24,3 +20,6 @@ func _on_level_4_pressed() -> void:
 
 func _on_level_5_pressed() -> void:
 	get_tree().change_scene_to_file("res://Levels/Level5.tscn")
+
+func _on_menu_pressed() -> void:
+	get_tree().change_scene_to_file("res://Levels/Menu.tscn")

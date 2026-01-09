@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://bitrm340wg2oq"]
 
 [ext_resource type="Script" uid="uid://pmfydhm6f547" path="res://Basics/HandBlocks/character_body_2d.gd" id="1_s4gr2"]
-[ext_resource type="Texture2D" uid="uid://c3voylc6urp1t" path="res://assets/Balde.png" id="2_s4gr2"]
+[ext_resource type="Texture2D" uid="uid://c3voylc6urp1t" path="res://Assets/Balde.png" id="2_s4gr2"]
 
 [node name="Balde" type="CharacterBody2D"]
 scale = Vector2(0.25, 0.25)

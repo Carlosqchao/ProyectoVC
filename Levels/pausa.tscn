@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://p6nxovhhtfrx"]
 
-[ext_resource type="Script" uid="uid://b57ewc3stbbx4" path="res://pausa.gd" id="1_6te7p"]
+[ext_resource type="Script" uid="uid://b57ewc3stbbx4" path="res://Scripts/pausa.gd" id="1_6te7p"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_grpyg"]
 bg_color = Color(0, 0.6313726, 0.85882354, 1)

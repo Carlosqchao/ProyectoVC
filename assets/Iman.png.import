@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dh14s1bpm3e2q"
-path="res://.godot/imported/Iman.png-bdcd847a95243edb38ed4f541b87f40e.ctex"
+path="res://.godot/imported/Iman.png-5ae160d9ec0951fba3fdf53a00ccd81c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Iman.png"
-dest_files=["res://.godot/imported/Iman.png-bdcd847a95243edb38ed4f541b87f40e.ctex"]
+source_file="res://Assets/Iman.png"
+dest_files=["res://.godot/imported/Iman.png-5ae160d9ec0951fba3fdf53a00ccd81c.ctex"]
 
 [params]
 

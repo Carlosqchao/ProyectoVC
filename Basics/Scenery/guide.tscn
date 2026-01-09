@@ -1,0 +1,150 @@
+[gd_scene load_steps=14 format=3 uid="uid://djg2xeyhs7a0w"]
+
+[ext_resource type="Script" uid="uid://daw5qbdxoegx7" path="res://Basics/Scripts/guide.gd" id="1_00ipb"]
+[ext_resource type="Texture2D" uid="uid://bpb0gfs4y3apm" path="res://Assets/fondo.jpg" id="1_xt762"]
+[ext_resource type="Texture2D" uid="uid://dbq3ioyxw11x4" path="res://Assets/rock_example.png" id="2_xo6ww"]
+[ext_resource type="Texture2D" uid="uid://cb0d2cl16y32x" path="res://Assets/flecha.png" id="3_2euge"]
+[ext_resource type="Texture2D" uid="uid://c3voylc6urp1t" path="res://Assets/Balde.png" id="4_00ipb"]
+[ext_resource type="Texture2D" uid="uid://d1p07yyc3wdfo" path="res://Assets/iman_example.png" id="5_l2x4p"]
+[ext_resource type="Texture2D" uid="uid://dh14s1bpm3e2q" path="res://Assets/Iman.png" id="6_kwwir"]
+[ext_resource type="Texture2D" uid="uid://bc011vrg314v8" path="res://Assets/index_example.png" id="7_gd0b3"]
+[ext_resource type="Texture2D" uid="uid://ngdb5gvl2lb0" path="res://Assets/fuelle_example.png" id="8_fm20o"]
+[ext_resource type="Texture2D" uid="uid://cvicsex8pssnn" path="res://Assets/Fuelle.png" id="9_73syd"]
+[ext_resource type="Texture2D" uid="uid://bqlu2sp06kdb6" path="res://Assets/Palo.png" id="10_o4eex"]
+[ext_resource type="AudioStream" uid="uid://bk3knof6qfu5a" path="res://Assets/661248__magmadiverrr__video-game-menu-music.mp3" id="12_l2x4p"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wltw1"]
+bg_color = Color(0, 0.6306667, 0.86, 1)
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_00ipb")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_xt762")
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 693.0
+offset_top = 30.0
+offset_right = 887.0
+offset_bottom = 281.0
+texture = ExtResource("2_xo6ww")
+expand_mode = 1
+
+[node name="TextureRect8" type="TextureRect" parent="TextureRect2"]
+layout_mode = 0
+offset_left = 106.0
+offset_top = 108.0
+offset_right = 291.0
+offset_bottom = 224.0
+texture = ExtResource("3_2euge")
+expand_mode = 1
+
+[node name="Balde" type="Sprite2D" parent="TextureRect2"]
+position = Vector2(341, 146.99998)
+scale = Vector2(0.495, 0.4575)
+texture = ExtResource("4_00ipb")
+
+[node name="TextureRect3" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 280.0
+offset_top = 5.0
+offset_right = 431.0
+offset_bottom = 269.0
+texture = ExtResource("5_l2x4p")
+expand_mode = 1
+
+[node name="TextureRect7" type="TextureRect" parent="TextureRect3"]
+layout_mode = 0
+offset_left = 61.0
+offset_top = 141.0
+offset_right = 246.0
+offset_bottom = 257.0
+texture = ExtResource("3_2euge")
+expand_mode = 1
+
+[node name="Iman" type="Sprite2D" parent="TextureRect3"]
+position = Vector2(296, 171)
+rotation = 1.5707964
+scale = Vector2(0.535, 0.5075)
+texture = ExtResource("6_kwwir")
+
+[node name="TextureRect4" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 254.0
+offset_top = 265.0
+offset_right = 439.0
+offset_bottom = 626.0
+texture = ExtResource("7_gd0b3")
+expand_mode = 1
+
+[node name="TextureRect6" type="TextureRect" parent="TextureRect4"]
+layout_mode = 0
+offset_left = 97.0
+offset_top = 184.0
+offset_right = 282.0
+offset_bottom = 300.0
+texture = ExtResource("3_2euge")
+expand_mode = 1
+
+[node name="TextureRect5" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 653.0
+offset_top = 299.0
+offset_right = 918.0
+offset_bottom = 624.0
+texture = ExtResource("8_fm20o")
+expand_mode = 1
+
+[node name="TextureRect8" type="TextureRect" parent="TextureRect5"]
+layout_mode = 0
+offset_left = 146.0
+offset_top = 163.0
+offset_right = 331.0
+offset_bottom = 279.0
+texture = ExtResource("3_2euge")
+expand_mode = 1
+
+[node name="Fuelle" type="Sprite2D" parent="TextureRect5"]
+position = Vector2(386, 189)
+rotation = -1.5707964
+scale = Vector2(0.51, 0.485)
+texture = ExtResource("9_73syd")
+
+[node name="Palo" type="Sprite2D" parent="."]
+position = Vector2(571, 492.00003)
+rotation = 1.5707964
+scale = Vector2(0.57740736, 0.63730234)
+texture = ExtResource("10_o4eex")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+offset_right = 238.0
+offset_bottom = 42.0
+
+[node name="Back" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_wltw1")
+text = "Back
+"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("12_l2x4p")
+volume_db = -20.0
+autoplay = true
+
+[connection signal="pressed" from="VBoxContainer/Back" to="." method="_on_back_pressed"]
