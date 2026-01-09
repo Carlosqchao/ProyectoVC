@@ -1,4 +1,5 @@
 # MazeBall
+<img width="1024" height="877" alt="Caratula" src="https://github.com/user-attachments/assets/8ca9c06b-88a4-41ef-8a44-5b7f79fca7f4" />
 
 ### Descripción
 - MazeBall es un juego de puzzles y plataformas desarrollado en Godot que incorpora control mediante reconocimiento de manos usando MediaPipe. El objetivo es resolver laberintos y desafíos de plataformas moviendo una bola y accionando mecanismos mediante entradas tradicionales (teclado/ratón) y gestos de la mano capturados por la webcam.
@@ -66,6 +67,9 @@
 - /notebooks                  — Jupyter notebooks para experimentación (opcional)
 - /assets                     — sprites, sonidos, modelos
 - README.md
+
+## Video Demo
+[![Video MazeBall](https://img.youtube.com/vi/VrBp10FoIUI/maxresdefault.jpg)](https://youtu.be/VrBp10FoIUI)
 
 ### Créditos y contacto
 - Autor/Repositorio: Carlosqchao y Juanelboi / ProyectoVC
