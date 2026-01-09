@@ -1,0 +1,95 @@
+[gd_scene load_steps=10 format=3 uid="uid://dug2y2y03rhkt"]
+
+[ext_resource type="PackedScene" uid="uid://byrgpfbmyhhc0" path="res://Basics/HandHandler.tscn" id="1_w1sat"]
+[ext_resource type="Texture2D" uid="uid://bpb0gfs4y3apm" path="res://assets/fondo.jpg" id="2_nijbd"]
+[ext_resource type="PackedScene" uid="uid://cqtng0pi7ov0d" path="res://Basics/Scenery/Finish.tscn" id="3_cg4ff"]
+[ext_resource type="PackedScene" uid="uid://co3q06gnyqi4e" path="res://Basics/Scenery/Ball.tscn" id="4_rss6v"]
+[ext_resource type="PackedScene" uid="uid://bymvqs6o1wht8" path="res://Basics/Scenery/IBlock.tscn" id="5_x1euj"]
+[ext_resource type="PackedScene" uid="uid://manpniyvu1we" path="res://Basics/Scenery/Spike.tscn" id="6_am2wo"]
+[ext_resource type="PackedScene" uid="uid://blw6fetirvd1x" path="res://Basics/Scenery/Void.tscn" id="7_888os"]
+[ext_resource type="PackedScene" uid="uid://cq4xf3fvribpn" path="res://Basics/Scenery/Borders.tscn" id="8_nxrld"]
+[ext_resource type="PackedScene" uid="uid://p6nxovhhtfrx" path="res://Levels/pausa.tscn" id="9_ycmcf"]
+
+[node name="Level4" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Node" parent="." instance=ExtResource("1_w1sat")]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_nijbd")
+
+[node name="Meta" parent="." instance=ExtResource("3_cg4ff")]
+position = Vector2(1112, 37)
+scale = Vector2(0.5, 0.5)
+
+[node name="Ball" parent="." instance=ExtResource("4_rss6v")]
+position = Vector2(55, 386)
+
+[node name="Suelo" parent="." instance=ExtResource("5_x1euj")]
+position = Vector2(75, 441)
+scale = Vector2(4.5, 1)
+
+[node name="Pincho" parent="." instance=ExtResource("6_am2wo")]
+position = Vector2(75, 255)
+rotation = 3.1415927
+
+[node name="Node2D2" parent="Pincho" instance=ExtResource("6_am2wo")]
+position = Vector2(-78, 1.1444092e-05)
+
+[node name="Node2D2" parent="Pincho/Node2D2" instance=ExtResource("6_am2wo")]
+position = Vector2(-76, 1.1444092e-05)
+
+[node name="Node2D2" parent="Pincho/Node2D2/Node2D2" instance=ExtResource("6_am2wo")]
+position = Vector2(-77, 1.1563301e-05)
+
+[node name="Node2D2" parent="Pincho/Node2D2/Node2D2/Node2D2" instance=ExtResource("6_am2wo")]
+position = Vector2(-77, 1.1563301e-05)
+
+[node name="Node2D2" parent="Pincho/Node2D2/Node2D2/Node2D2/Node2D2" instance=ExtResource("6_am2wo")]
+position = Vector2(-76, 1.1444092e-05)
+
+[node name="Node2D2" parent="Pincho/Node2D2/Node2D2/Node2D2/Node2D2/Node2D2" instance=ExtResource("6_am2wo")]
+position = Vector2(-76, 1.1444092e-05)
+
+[node name="Node2D2" parent="Pincho/Node2D2/Node2D2/Node2D2/Node2D2/Node2D2/Node2D2" instance=ExtResource("6_am2wo")]
+position = Vector2(-76, 1.1444092e-05)
+
+[node name="Node2D2" parent="Pincho/Node2D2/Node2D2/Node2D2/Node2D2/Node2D2/Node2D2/Node2D2" instance=ExtResource("6_am2wo")]
+position = Vector2(-76, 1.1444092e-05)
+
+[node name="Node2D2" parent="Pincho/Node2D2/Node2D2/Node2D2/Node2D2/Node2D2/Node2D2/Node2D2/Node2D2" instance=ExtResource("6_am2wo")]
+position = Vector2(-77, 1.1563301e-05)
+
+[node name="Node2D2" parent="Pincho/Node2D2/Node2D2/Node2D2/Node2D2/Node2D2/Node2D2/Node2D2/Node2D2/Node2D2" instance=ExtResource("6_am2wo")]
+position = Vector2(-77, 1.1531514e-05)
+
+[node name="Node2D2" parent="Pincho/Node2D2/Node2D2/Node2D2/Node2D2/Node2D2/Node2D2/Node2D2/Node2D2/Node2D2/Node2D2" instance=ExtResource("6_am2wo")]
+position = Vector2(-211.99998, 135.00003)
+rotation = 1.5707964
+scale = Vector2(0.6, 1)
+
+[node name="Suelo2" parent="." instance=ExtResource("5_x1euj")]
+position = Vector2(76, 239)
+scale = Vector2(4.5, 1)
+
+[node name="Suelo3" parent="." instance=ExtResource("5_x1euj")]
+position = Vector2(1062, 110)
+scale = Vector2(0.5, 1)
+
+[node name="Void" parent="." instance=ExtResource("7_888os")]
+position = Vector2(4, -2)
+
+[node name="borders" parent="." instance=ExtResource("8_nxrld")]
+
+[node name="Pausa" parent="." instance=ExtResource("9_ycmcf")]

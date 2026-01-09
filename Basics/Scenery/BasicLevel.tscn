@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://dsmpk4uyqhoa3"]
+[gd_scene load_steps=6 format=3 uid="uid://dsmpk4uyqhoa3"]
 
 [ext_resource type="Texture2D" uid="uid://bpb0gfs4y3apm" path="res://assets/fondo.jpg" id="1_mjp82"]
-[ext_resource type="PackedScene" uid="uid://cq4xf3fvribpn" path="res://Basics/Borders.tscn" id="2_ii4b4"]
+[ext_resource type="PackedScene" uid="uid://cq4xf3fvribpn" path="res://Basics/Scenery/Borders.tscn" id="2_ii4b4"]
 [ext_resource type="PackedScene" uid="uid://blw6fetirvd1x" path="res://Basics/Scenery/Void.tscn" id="3_63d4g"]
 [ext_resource type="PackedScene" uid="uid://p6nxovhhtfrx" path="res://Levels/pausa.tscn" id="4_ii4b4"]
+[ext_resource type="PackedScene" uid="uid://byrgpfbmyhhc0" path="res://Basics/HandHandler.tscn" id="5_63d4g"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -27,3 +28,5 @@ texture = ExtResource("1_mjp82")
 [node name="Void" parent="." instance=ExtResource("3_63d4g")]
 
 [node name="Pausa" parent="." instance=ExtResource("4_ii4b4")]
+
+[node name="Node" parent="." instance=ExtResource("5_63d4g")]

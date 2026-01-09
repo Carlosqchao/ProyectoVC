@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://co3q06gnyqi4e" path="res://Basics/Scenery/Ball.tscn" id="3_v115i"]
 [ext_resource type="PackedScene" uid="uid://bymvqs6o1wht8" path="res://Basics/Scenery/IBlock.tscn" id="4_jglcl"]
 [ext_resource type="PackedScene" uid="uid://byrgpfbmyhhc0" path="res://Basics/HandHandler.tscn" id="5_v115i"]
-[ext_resource type="PackedScene" uid="uid://cq4xf3fvribpn" path="res://Basics/Borders.tscn" id="6_w0h0a"]
+[ext_resource type="PackedScene" uid="uid://cq4xf3fvribpn" path="res://Basics/Scenery/Borders.tscn" id="6_w0h0a"]
 [ext_resource type="PackedScene" uid="uid://blw6fetirvd1x" path="res://Basics/Scenery/Void.tscn" id="7_m3ha0"]
 [ext_resource type="PackedScene" uid="uid://p6nxovhhtfrx" path="res://Levels/pausa.tscn" id="8_m3ha0"]
 

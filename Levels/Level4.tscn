@@ -1,16 +1,12 @@
-[gd_scene load_steps=10 format=3 uid="uid://dug2y2y03rhkt"]
+[gd_scene load_steps=6 format=3 uid="uid://0j7rqehox7kh"]
 
-[ext_resource type="PackedScene" uid="uid://byrgpfbmyhhc0" path="res://Basics/HandHandler.tscn" id="1_5brs8"]
-[ext_resource type="Texture2D" uid="uid://bpb0gfs4y3apm" path="res://assets/fondo.jpg" id="2_qgpl5"]
+[ext_resource type="PackedScene" uid="uid://dsmpk4uyqhoa3" path="res://Basics/Scenery/BasicLevel.tscn" id="1_0sogr"]
 [ext_resource type="PackedScene" uid="uid://cqtng0pi7ov0d" path="res://Basics/Scenery/Finish.tscn" id="3_vgbee"]
 [ext_resource type="PackedScene" uid="uid://co3q06gnyqi4e" path="res://Basics/Scenery/Ball.tscn" id="4_lfbxl"]
+[ext_resource type="PackedScene" uid="uid://cc1hjpsr4pym0" path="res://Basics/Scenery/Leaf.tscn" id="5_5brs8"]
 [ext_resource type="PackedScene" uid="uid://bymvqs6o1wht8" path="res://Basics/Scenery/IBlock.tscn" id="5_v72e1"]
-[ext_resource type="PackedScene" uid="uid://manpniyvu1we" path="res://Basics/Scenery/Spike.tscn" id="6_so18s"]
-[ext_resource type="PackedScene" uid="uid://blw6fetirvd1x" path="res://Basics/Scenery/Void.tscn" id="7_vgbee"]
-[ext_resource type="PackedScene" uid="uid://cq4xf3fvribpn" path="res://Basics/Borders.tscn" id="8_lfbxl"]
-[ext_resource type="PackedScene" uid="uid://p6nxovhhtfrx" path="res://Levels/pausa.tscn" id="9_lfbxl"]
 
-[node name="Level4" type="Control"]
+[node name="Control" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -18,78 +14,41 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Node" parent="." instance=ExtResource("1_5brs8")]
-
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="Control" parent="." instance=ExtResource("1_0sogr")]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("2_qgpl5")
-
-[node name="Meta" parent="." instance=ExtResource("3_vgbee")]
-position = Vector2(1112, 37)
-scale = Vector2(0.5, 0.5)
 
 [node name="Ball" parent="." instance=ExtResource("4_lfbxl")]
-position = Vector2(55, 386)
 
-[node name="Suelo" parent="." instance=ExtResource("5_v72e1")]
-position = Vector2(75, 441)
-scale = Vector2(4.5, 1)
+[node name="Node2D2" parent="." instance=ExtResource("5_v72e1")]
+position = Vector2(78, 394)
+scale = Vector2(6, 1)
 
-[node name="Pincho" parent="." instance=ExtResource("6_so18s")]
-position = Vector2(75, 255)
-rotation = 3.1415927
+[node name="Finish" parent="." instance=ExtResource("3_vgbee")]
+position = Vector2(1077, 284)
 
-[node name="Node2D2" parent="Pincho" instance=ExtResource("6_so18s")]
-position = Vector2(-78, 1.1444092e-05)
+[node name="Leaf" parent="." instance=ExtResource("5_5brs8")]
+position = Vector2(1126, 332)
 
-[node name="Node2D2" parent="Pincho/Node2D2" instance=ExtResource("6_so18s")]
-position = Vector2(-76, 1.1444092e-05)
+[node name="Leaf2" parent="." instance=ExtResource("5_5brs8")]
+position = Vector2(1074, 275)
 
-[node name="Node2D2" parent="Pincho/Node2D2/Node2D2" instance=ExtResource("6_so18s")]
-position = Vector2(-77, 1.1563301e-05)
+[node name="Leaf3" parent="." instance=ExtResource("5_5brs8")]
+position = Vector2(1134, 271)
 
-[node name="Node2D2" parent="Pincho/Node2D2/Node2D2/Node2D2" instance=ExtResource("6_so18s")]
-position = Vector2(-77, 1.1563301e-05)
+[node name="Leaf4" parent="." instance=ExtResource("5_5brs8")]
+position = Vector2(1086, 212)
 
-[node name="Node2D2" parent="Pincho/Node2D2/Node2D2/Node2D2/Node2D2" instance=ExtResource("6_so18s")]
-position = Vector2(-76, 1.1444092e-05)
+[node name="Leaf5" parent="." instance=ExtResource("5_5brs8")]
+position = Vector2(1028, 223)
 
-[node name="Node2D2" parent="Pincho/Node2D2/Node2D2/Node2D2/Node2D2/Node2D2" instance=ExtResource("6_so18s")]
-position = Vector2(-76, 1.1444092e-05)
+[node name="Leaf6" parent="." instance=ExtResource("5_5brs8")]
+position = Vector2(1011, 332)
 
-[node name="Node2D2" parent="Pincho/Node2D2/Node2D2/Node2D2/Node2D2/Node2D2/Node2D2" instance=ExtResource("6_so18s")]
-position = Vector2(-76, 1.1444092e-05)
+[node name="Leaf7" parent="." instance=ExtResource("5_5brs8")]
+position = Vector2(1070, 332)
 
-[node name="Node2D2" parent="Pincho/Node2D2/Node2D2/Node2D2/Node2D2/Node2D2/Node2D2/Node2D2" instance=ExtResource("6_so18s")]
-position = Vector2(-76, 1.1444092e-05)
+[node name="Leaf8" parent="." instance=ExtResource("5_5brs8")]
+position = Vector2(995, 279)
 
-[node name="Node2D2" parent="Pincho/Node2D2/Node2D2/Node2D2/Node2D2/Node2D2/Node2D2/Node2D2/Node2D2" instance=ExtResource("6_so18s")]
-position = Vector2(-77, 1.1563301e-05)
-
-[node name="Node2D2" parent="Pincho/Node2D2/Node2D2/Node2D2/Node2D2/Node2D2/Node2D2/Node2D2/Node2D2/Node2D2" instance=ExtResource("6_so18s")]
-position = Vector2(-77, 1.1531514e-05)
-
-[node name="Node2D2" parent="Pincho/Node2D2/Node2D2/Node2D2/Node2D2/Node2D2/Node2D2/Node2D2/Node2D2/Node2D2/Node2D2" instance=ExtResource("6_so18s")]
-position = Vector2(-211.99998, 135.00003)
-rotation = 1.5707964
-scale = Vector2(0.6, 1)
-
-[node name="Suelo2" parent="." instance=ExtResource("5_v72e1")]
-position = Vector2(76, 239)
-scale = Vector2(4.5, 1)
-
-[node name="Suelo3" parent="." instance=ExtResource("5_v72e1")]
-position = Vector2(1062, 110)
-scale = Vector2(0.5, 1)
-
-[node name="Void" parent="." instance=ExtResource("7_vgbee")]
-position = Vector2(4, -2)
-
-[node name="borders" parent="." instance=ExtResource("8_lfbxl")]
-
-[node name="Pausa" parent="." instance=ExtResource("9_lfbxl")]
+[node name="Leaf9" parent="." instance=ExtResource("5_5brs8")]
+position = Vector2(957, 330)

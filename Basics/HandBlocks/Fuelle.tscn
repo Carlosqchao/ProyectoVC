@@ -23,7 +23,7 @@ polygon = PackedVector2Array(188, -8.000009, 110, -26.000006, -178.00002, -189.9
 [node name="Area2D" type="Area2D" parent="."]
 rotation = 1.5707964
 collision_layer = 2
-collision_mask = 4
+collision_mask = 12
 script = ExtResource("3_hofwp")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
