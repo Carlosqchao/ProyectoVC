@@ -25,3 +25,4 @@ position = Vector2(0, -1)
 [node name="Iman" parent="Node/ColorRect3" instance=ExtResource("5_wyuqb")]
 
 [node name="Fuelle" parent="Node/ColorRect3" instance=ExtResource("6_nbou3")]
+position = Vector2(0, 0)

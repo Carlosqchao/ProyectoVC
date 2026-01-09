@@ -1,0 +1,77 @@
+[gd_scene load_steps=10 format=3 uid="uid://btrqc1ugpa50w"]
+
+[ext_resource type="PackedScene" uid="uid://byrgpfbmyhhc0" path="res://Basics/HandHandler.tscn" id="1_xb24h"]
+[ext_resource type="Texture2D" uid="uid://bpb0gfs4y3apm" path="res://assets/fondo.jpg" id="2_jon3f"]
+[ext_resource type="PackedScene" uid="uid://cqtng0pi7ov0d" path="res://Basics/Scenery/Finish.tscn" id="3_vybwq"]
+[ext_resource type="PackedScene" uid="uid://co3q06gnyqi4e" path="res://Basics/Scenery/Ball.tscn" id="4_4cgce"]
+[ext_resource type="PackedScene" uid="uid://manpniyvu1we" path="res://Basics/Scenery/Spike.tscn" id="5_twi1l"]
+[ext_resource type="PackedScene" uid="uid://bymvqs6o1wht8" path="res://Basics/Scenery/IBlock.tscn" id="6_q5lgr"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_vybwq"]
+normal = Vector2(0, 1)
+distance = 7.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_4cgce"]
+distance = 6.9999995
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_twi1l"]
+normal = Vector2(0, 1)
+distance = 6.0
+
+[node name="Level3" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Node" parent="." instance=ExtResource("1_xb24h")]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_jon3f")
+
+[node name="Meta" parent="." instance=ExtResource("3_vybwq")]
+position = Vector2(1074, 343)
+
+[node name="Ball" parent="." instance=ExtResource("4_4cgce")]
+position = Vector2(52, 397)
+
+[node name="Spike" parent="." instance=ExtResource("5_twi1l")]
+position = Vector2(387, 420)
+
+[node name="Spike2" parent="." instance=ExtResource("5_twi1l")]
+position = Vector2(464, 418)
+
+[node name="Floor" parent="." instance=ExtResource("6_q5lgr")]
+position = Vector2(73, 453)
+scale = Vector2(6, 1)
+
+[node name="Spike3" parent="." instance=ExtResource("5_twi1l")]
+position = Vector2(539, 418)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(1161, 325)
+rotation = 1.5707964
+shape = SubResource("WorldBoundaryShape2D_vybwq")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+position = Vector2(-9, 319)
+rotation = 1.5707964
+shape = SubResource("WorldBoundaryShape2D_4cgce")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
+position = Vector2(574, -7)
+shape = SubResource("WorldBoundaryShape2D_twi1l")
